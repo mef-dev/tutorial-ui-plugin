@@ -1,6 +1,6 @@
-import {Deserializable} from "../interfaces/deserializable.model";
+import { Deserializable } from "../interfaces/deserializable.model";
 
-export class CustomerAccountModel implements Deserializable{
+export class CustomerAccountModel implements Deserializable {
 
     ACCOUNT_TYPES: string;
     Total: number;
@@ -24,6 +24,8 @@ export class CustomerAccountModel implements Deserializable{
     Name: any;
     ParentId: any;
 
+    status_metadata: any; status: any;
+
     deserialize(input: any): this {
         this.ACCOUNT = input.account;
         this.ACCOUNT_ID = input.accounT_ID;
@@ -38,5 +40,5 @@ export class CustomerAccountModel implements Deserializable{
     }
 
 
-    
+
 }

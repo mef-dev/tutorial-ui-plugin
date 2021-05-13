@@ -1,3 +1,4 @@
+import { StringExt } from './../utils/string-ext.util';
 
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders }   from '@angular/common/http';
@@ -5,27 +6,34 @@ import { HttpClient, HttpHeaders }   from '@angular/common/http';
 import { CustomerAccountModel } from '../models/customer-account.model'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { BaseEndpoints } from '../endpoints/base-endpoints';
+import { Endpoints } from '../endpoints/base-endpoints';
 import { BaseEntity } from '../models/base-entity.model';
+import { Inject } from "@angular/core";
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class CustomerAccountsService {
-
-  //"Content-Type":"text/plain",
   private headers: HttpHeaders  = new HttpHeaders(
-    BaseEndpoints.isProduction ?
+    environment.production ?
       {"withCredentials" : "true" } :
       {}​);
 
-  constructor(private http: HttpClient) {}
+  baseUrl: string;
+  constructor(@Inject("BASE_URL") baseUrl: string, private http: HttpClient) {
+    this.baseUrl = baseUrl;
+  }
 
-  public getCustomerAccauntsByModel(params: any): Observable<CustomerAccountModel[]> {
-    return this.http.get<object>(BaseEndpoints.getCustomerAccauntsByModel(params),
+  public getCustomerAccountsByModel(params: any): Observable<CustomerAccountModel[]> {
+    return this.http.get<object>(
+      `${this.baseUrl}${Endpoints.getCustomerAccounts
+      }?page=1&pagesize=1000&filter=${JSON.stringify(
+        params
+      )}&hateoas=false`,
       { headers: this.headers })
       .pipe(map(data => data['data'].map(data => new CustomerAccountModel().deserialize(data))));
   }
 
-  public createCustomerAccaunts(model: CustomerAccountModel){
+  public createCustomerAccount(model: CustomerAccountModel){
 
     let body: BaseEntity =
     {
@@ -38,11 +46,11 @@ export class CustomerAccountsService {
       CustomAttributes: {}
     }
 
-    return this.http.post(BaseEndpoints.createCustomerAccaunts(), body,
+    return this.http.post(`${this.baseUrl}${Endpoints.createCustomerAccount}`, body,
     { headers: this.headers });
   }
 
-  public updateCustomerAccaunts(model: CustomerAccountModel){
+  public updateCustomerAccount(model: CustomerAccountModel){
       let body: BaseEntity =
       {
         Id: model.ABN_ID.toString(),
@@ -54,12 +62,13 @@ export class CustomerAccountsService {
         CustomAttributes: {}
       }
 
-    return this.http.put(BaseEndpoints.updateCustomerAccaunts(model.ABN_ID), body,
+    return this.http.put(`${this.baseUrl}${StringExt.Format(Endpoints.setCustomerAccount, model.ABN_ID)}`,
+     body,
     { headers: this.headers });
   }
 
-  public deleteCustomerAccaunts(ABN_ID: number){
-    return this.http.delete(BaseEndpoints.deleteCustomerAccaunts(ABN_ID),
+  public deleteCustomerAccount(ABN_ID: number){
+    return this.http.delete(`${this.baseUrl}${StringExt.Format(Endpoints.deleteCustomerAccount, ABN_ID)}`,
     { headers: this.headers });
   }
 }

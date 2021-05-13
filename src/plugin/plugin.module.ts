@@ -34,6 +34,7 @@ import { SimpleItemComponent } from "./components/simple-item.component";
 //import { RowEditWindowComponent} from './components/row-edit-window.component';
 
 import { CustomerAccountsService } from "./services/customer-account.service";
+import { FakeCustomerAccountsService } from "./services/fake-customer-account.service";
 // import { CustomerTypesService } from "./services/customer-types.service";
 
 export const SETTINGS = new InjectionToken("SETTINGS");
@@ -70,7 +71,8 @@ export const SETTINGS = new InjectionToken("SETTINGS");
       useValue: PluginComponent,
     },
     // CustomerTypesService, 
-    CustomerAccountsService
+    CustomerAccountsService,
+    FakeCustomerAccountsService
   ],
   bootstrap: [PluginComponent],
 })

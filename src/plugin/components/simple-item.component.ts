@@ -3,12 +3,15 @@ import {
   ViewChild
 } from "@angular/core";
 
-import { jqxGridComponent } from "jqwidgets-scripts/jqwidgets-ng/jqxgrid";
+import { jqxGridComponent } from 'jqwidgets-scripts/jqwidgets-ng/jqxgrid';
 
 import { CustomerAccountModel } from "../models/customer-account.model";
 import { CustomerAccountsService } from "../services/customer-account.service";
 
-import { BaseEndpoints } from '../endpoints/base-endpoints';
+import { Endpoints } from '../endpoints/base-endpoints';
+import { Inject } from "@angular/core";
+import { FakeCustomerAccountsService } from "../services/fake-customer-account.service";
+import { OnInit } from "@angular/core";
 
 @Component({
   selector: "app-item",
@@ -49,8 +52,8 @@ import { BaseEndpoints } from '../endpoints/base-endpoints';
 
   `
 })
-export class SimpleItemComponent  {
-  
+export class SimpleItemComponent implements OnInit {
+
   @ViewChild("myGrid") myGrid: jqxGridComponent;
 
   public requestsCnt: number = 0;
@@ -63,10 +66,28 @@ export class SimpleItemComponent  {
   private nowEditRow: number = -1;
   private isNewRow: boolean = false;
   private isDelRow: boolean = false;
+  baseUrl: string;
+  loadProcess: boolean;
 
-  constructor(
-    private _CustomerAccountsService: CustomerAccountsService,
-  ) {  }
+  constructor(@Inject("BASE_URL") baseUrl: string, private customerAccountsService: FakeCustomerAccountsService) {
+    this.baseUrl = baseUrl;
+
+    this.customerAccountsService.getCustomerAccountsByModel({})
+      .subscribe((bankAccounts) => {
+        var accounts: any[] = bankAccounts;
+        accounts.unshift({ oneString: " ", bacId: 0 });
+        this.source = this.getCustomerAccountsSource(
+          accounts
+        );
+        this.dataAdapter = new jqx.dataAdapter(
+          this.source
+        );
+      },
+        (error) => {
+          this.loadProcess = false;
+        }
+      )
+  }
 
   //#region init grid
 
@@ -92,9 +113,12 @@ export class SimpleItemComponent  {
 
   source: any = {
     datatype: "json",
-    beforeLoadComplete: this.beforeLoadComplete,
+    //beforeLoadComplete: this.beforeLoadComplete,
     datafields: this.filds,
-    url: BaseEndpoints.getCustomerAccauntsByModel({pagenum: 0, pagesize: 10}),
+    // url: `${this.baseUrl}${Endpoints.getCustomerAccounts
+    //   }?page=1&pagesize=1000&filter=${JSON.stringify(
+    //     { pagenum: 0, pagesize: 10 }
+    //   )}&hateoas=false`,///BaseEndpoints.getCustomerAccountsByModel({pagenum: 0, pagesize: 10}),
     sort: () => {
       // update the grid and send a request to the server.
       this.myGrid.updatebounddata('sort');
@@ -108,12 +132,11 @@ export class SimpleItemComponent  {
   dataAdapter: any = new jqx.dataAdapter(this.source, {
     loadServerData: (serverdata, source, callback) => {
       console.log("serverdata", serverdata);
-      this._CustomerAccountsService.getCustomerAccauntsByModel(serverdata).subscribe(
-        req => { callback({ records: req, totalrecords: (req[0] != null ? req[0].Total : 0)  }); },
+      this.customerAccountsService.getCustomerAccountsByModel(serverdata).subscribe(
+        req => { callback({ records: req, totalrecords: (req[0] != null ? req[0].Total : 0) }); },
         err => console.log(err)
       );
     }
-
   });
 
   columns: any[] = [
@@ -124,12 +147,12 @@ export class SimpleItemComponent  {
       columntype: "dropdownlist",
       createeditor: (row: number, value: any, editor: any): void =>
         editor.jqxDropDownList({
-          autoDropDownHeight: true,   
+          autoDropDownHeight: true,
         }),
-        filtertype: 'list',
-        filteritems: ['0', '1']
+      filtertype: 'list',
+      filteritems: ['0', '1']
     },
-    { text: "Язик", datafield: "Lang", width: 75, columntype: "dropdownlist", search: false, sortable: false, filterable: false},
+    { text: "Язик", datafield: "Lang", width: 75, columntype: "dropdownlist", search: false, sortable: false, filterable: false },
     { text: "Внешний ID", datafield: "IsExternalID", width: 100, search: false, sortable: false, filterable: false }, // ???
     { text: "Имя", datafield: "CLIENT_NAME", width: 200 },
     { text: "Контракти", datafield: "CLIENT_CONTRACT", width: 150 },
@@ -142,10 +165,10 @@ export class SimpleItemComponent  {
       columntype: "checkbox",
       cellbeginedit: this.cellbeginedit, search: false, sortable: false, filterable: false
     }, // ???
-    { text: "ID Аккаунта", datafield: "ACCOUNT_ID", width: 75 , search: false, sortable: false, filterable: false},
+    { text: "ID Аккаунта", datafield: "ACCOUNT_ID", width: 75, search: false, sortable: false, filterable: false },
     { text: "Аккаунт", datafield: "ACCOUNT", width: 100 },
     { text: "Номер", datafield: "BILL_NO", width: 100, search: false, sortable: false, filterable: false }, // ???
-    
+
   ];
 
   beforeLoadComplete(records: any): any {
@@ -155,11 +178,19 @@ export class SimpleItemComponent  {
     }
     return records;
   }
+  getCustomerAccountsSource(array?: Array<any>) {
+    return {
+      datatype: "json",
+      //beforeLoadComplete: this.beforeLoadComplete,
+      datafields: this.filds,
+      localdata: array,
+    }
+  }
 
   cellbeginedit(row: number, datafield: string, columntype: any, value: any): boolean {
     return this.nowEditRow == row ? true : false;
   }
- 
+
   //#endregion
 
   //#region logic
@@ -170,10 +201,10 @@ export class SimpleItemComponent  {
   }
 
   rowUnSelect(event: any): void {
-    if(this.nowEditRow != -1){
+    if (this.nowEditRow != -1) {
       this.myGrid.endrowedit(this.nowEditRow, false);
-      
-      if(!this.isDelRow)
+
+      if (!this.isDelRow)
         (this.isNewRow ? this.rowsToCreate : this.rowsToUpdate).push(this.myGrid.getrows()[this.nowEditRow]);
       else
         this.isDelRow = false;
@@ -182,7 +213,7 @@ export class SimpleItemComponent  {
       console.log(`End edit row ${event.args.rowindex}`);
 
       this.nowEditRow = -1;
-      this.isNewRow = false; 
+      this.isNewRow = false;
     }
   }
 
@@ -190,7 +221,6 @@ export class SimpleItemComponent  {
     this.nowEditRow = 0;
     this.isNewRow = true;
     this.myGrid.addrow(0, new CustomerAccountModel(), 0);
-    
     this.myGrid.beginrowedit(this.nowEditRow);
     console.log("add row btn");
     //console.log("nowEditRow " , this.nowEditRow);
@@ -199,7 +229,7 @@ export class SimpleItemComponent  {
 
   delRowBtnClick = (event) => {
     console.log("del btn ", this.nowEditRow);
-    if(this.nowEditRow == -1)
+    if (this.nowEditRow == -1)
       return;
     this.rowsToDelete.push(this.myGrid.getrows()[this.nowEditRow]);
     this.isDelRow = true;
@@ -207,9 +237,9 @@ export class SimpleItemComponent  {
   }
 
   saveBtnClick = (event) => {
-      
-    if(this.nowEditRow != -1)
-      this.myGrid.unselectrow(this.nowEditRow); 
+
+    if (this.nowEditRow != -1)
+      this.myGrid.unselectrow(this.nowEditRow);
     console.log("Save Change btn");
 
     console.log("this.rowsToCreate ", this.rowsToCreate);
@@ -218,45 +248,45 @@ export class SimpleItemComponent  {
 
     this.rowsToCreate.forEach(element => {
       this.requestsCnt++;
-      this._CustomerAccountsService.createCustomerAccaunts(element).subscribe(
-        request => this.okRequetAction("createCustomerAccaunts", request),
-        error => this.errRequetAction("createCustomerAccaunts", error)
+      this.customerAccountsService.createCustomerAccount(element).subscribe(
+        request => this.okRequetAction("createCustomerAccounts", request),
+        error => this.errRequetAction("createCustomerAccounts", error)
       );
     });
     this.rowsToCreate = [];
 
     this.rowsToUpdate.forEach(element => {
       this.requestsCnt++;
-      this._CustomerAccountsService.updateCustomerAccaunts(element).subscribe(
-        request => this.okRequetAction("updateCustomerAccaunts", request),
-        error =>this.errRequetAction("updateCustomerAccaunts", error)
+      this.customerAccountsService.updateCustomerAccount(element).subscribe(
+        request => this.okRequetAction("updateCustomerAccounts", request),
+        error => this.errRequetAction("updateCustomerAccounts", error)
       );
     });
     this.rowsToUpdate = [];
 
     this.rowsToDelete.forEach(element => {
       this.requestsCnt++;
-      this._CustomerAccountsService.deleteCustomerAccaunts(element.ABN_ID).subscribe(
-       request => this.okRequetAction("deleteCustomerAccaunts", request),
-       error => this.errRequetAction("deleteCustomerAccaunts", error)
+      this.customerAccountsService.deleteCustomerAccount(element.ABN_ID).subscribe(
+        request => this.okRequetAction("deleteCustomerAccounts", request),
+        error => this.errRequetAction("deleteCustomerAccounts", error)
       );
     });
     this.rowsToDelete = [];
     this.myGrid.updatebounddata();
-  } 
+  }
 
-  okRequetAction(actionName: string, req: any): void{
-    if(req['id'] > 0){
+  okRequetAction(actionName: string, req: any): void {
+    if (req['id'] > 0) {
       console.log(actionName + " ", req);
       this.requestsCnt--;
       this.myGrid.updatebounddata();
     }
-    else{
+    else {
       this.errRequetAction(actionName, req);
     }
   }
 
-  errRequetAction(actionName: string, req: any): void{
+  errRequetAction(actionName: string, req: any): void {
     console.log(actionName + " err ", req);
     this.errReqLog += req;
     this.requestsCnt--;
@@ -266,40 +296,40 @@ export class SimpleItemComponent  {
   //#endregion
 
   //#region tool bar
-  
+
   rendertoolbar = (toolbar: any): void => {
     let container = document.createElement('div');
-    
+
     container.style.margin = '5px';
 
     let buttonContainer1 = document.createElement('div');
     let buttonContainer2 = document.createElement('div');
     let buttonContainer3 = document.createElement('div');
-   
+
     buttonContainer1.id = 'buttonContainer1';
     buttonContainer2.id = 'buttonContainer2';
     buttonContainer3.id = 'buttonContainer3';
-  
-    buttonContainer1.style.cssText = 
-     buttonContainer2.style.cssText = 
-     buttonContainer3.style.cssText = 'float: right; margin-left: 10px; margin-right: 10px;';
- 
+
+    buttonContainer1.style.cssText =
+      buttonContainer2.style.cssText =
+      buttonContainer3.style.cssText = 'float: right; margin-left: 10px; margin-right: 10px;';
+
     container.appendChild(buttonContainer1);
     container.appendChild(buttonContainer2);
     container.appendChild(buttonContainer3);
-  
+
     toolbar[0].appendChild(container);
-    
-    let addRowButton = jqwidgets.createInstance('#buttonContainer1', 'jqxButton', { width: 105, value: 'Add New Row'  });
-    let saveChangeButton = jqwidgets.createInstance('#buttonContainer2', 'jqxButton', { width: 105, value: 'Save Change'  });
-    let deleteRowButton = jqwidgets.createInstance('#buttonContainer3', 'jqxButton', { width: 105, value: 'Delete select row'  });
-    
+
+    let addRowButton = jqwidgets.createInstance('#buttonContainer1', 'jqxButton', { width: 105, value: 'Add New Row' });
+    let saveChangeButton = jqwidgets.createInstance('#buttonContainer2', 'jqxButton', { width: 105, value: 'Save Change' });
+    let deleteRowButton = jqwidgets.createInstance('#buttonContainer3', 'jqxButton', { width: 105, value: 'Delete select row' });
+
     addRowButton.addEventHandler('click', this.addRowBtnClick);
     saveChangeButton.addEventHandler('click', this.saveBtnClick);
     deleteRowButton.addEventHandler('click', this.delRowBtnClick);
-    
+
   };
-  
+
   //#endregion
 
 }
