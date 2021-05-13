@@ -88,6 +88,7 @@ export class SimpleItemComponent implements OnInit {
         }
       )
   }
+  ngOnInit() {}
 
   //#region init grid
 

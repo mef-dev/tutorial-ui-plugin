@@ -2,12 +2,12 @@
 /* tslint:disable */
 export const PLUGIN_VERSION = {
     "dirty": true,
-    "raw": "689585e-dirty",
-    "hash": "689585e",
+    "raw": "e90e5e7-dirty",
+    "hash": "e90e5e7",
     "distance": null,
     "tag": null,
     "semver": null,
-    "suffix": "689585e-dirty",
+    "suffix": "e90e5e7-dirty",
     "semverString": null,
     "name": "app-customers",
     "version": "1.0.0"
