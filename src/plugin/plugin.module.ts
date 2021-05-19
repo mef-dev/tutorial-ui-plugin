@@ -55,7 +55,7 @@ export const SETTINGS = new InjectionToken("SETTINGS");
     TranslateModule,
     ROUTES,
     BrowserModule,
-    PluginRoutingModule,
+    //PluginRoutingModule,
     jqxGridModule,
     jqxDateTimeInputModule,
     jqxDropDownListModule,

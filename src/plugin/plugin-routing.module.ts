@@ -10,6 +10,10 @@ const routes: Routes = [
     component: SimpleItemComponent,
   },
   {
+    path: `item`,
+    component: SimpleItemComponent,
+  },
+  {
     path: `plugins/${PLUGIN_VERSION.name}/item`,
     component: SimpleItemComponent,
   }

@@ -1,9 +1,9 @@
 {
   "name": "app-customers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "npm run prebuild && ng serve --configuration=development",
+    "start": "npm run prebuild && ng serve --configuration=development --port=4201",
     "build": "npm run prebuild && rimraf dist && rollup -c",
     "clean": "rimraf dist",
     "prebuild": "node src/version.js",
