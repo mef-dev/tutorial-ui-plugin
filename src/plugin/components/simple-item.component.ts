@@ -54,7 +54,7 @@ import { OnInit } from "@angular/core";
 })
 export class SimpleItemComponent implements OnInit {
 
-  @ViewChild("myGrid") myGrid: jqxGridComponent;
+  @ViewChild('myGrid') myGrid: jqxGridComponent;
 
   public requestsCnt: number = 0;
   public errReqLog: string = '';
