@@ -31,7 +31,6 @@
     "jqwidgets-scripts": "^8.3.2",
     "json2csv": "^4.5.1",
     "moment": "^2.24.0",
-    "ng-packagr": "^13.2.1",
     "ngx-bootstrap": "^3.2.0",
     "ngx-translate-multi-http-loader": "^3.0.0",
     "node-sass": "^4.14.1",
@@ -44,7 +43,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-devkit/build-angular": "^0.13.10",
     "@angular-devkit/build-ng-packagr": "^0.13.10",
     "@angular/cli": "^8.3.29",
     "@angular/compiler": "~8.2.14",
@@ -67,6 +66,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^13.2.1",
     "node-sass": "^4.14.1",
     "protractor": "~5.4.0",
     "rimraf": "^2.6.2",
