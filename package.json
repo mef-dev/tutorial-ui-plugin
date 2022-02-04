@@ -32,6 +32,7 @@
     "moment": "^2.24.0",
     "ngx-bootstrap": "^3.2.0",
     "ngx-translate-multi-http-loader": "^3.0.0",
+    "ng-packagr": "^13.2.1",
     "node-sass": "^4.14.1",
     "pace-js": "^1.0.2",
     "primeicons": "^1.0.0",
@@ -46,7 +47,7 @@
     "@angular-devkit/build-ng-packagr": "^0.13.10",
     "@angular/cli": "^8.3.29",
     "@angular/compiler": "~8.2.14",
-    "@angular/compiler-cli": "~8.2.14",
+    "@angular/compiler-cli": "~9.1.13",
     "@angular/core": "^8.2.14",
     "@angular/language-service": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
@@ -85,6 +86,6 @@
     "systemjs": "^6.3.3",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "3.2.4"
+    "typescript": "3.8.3"
   }
 }
