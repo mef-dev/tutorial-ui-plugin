@@ -12,4 +12,4 @@ const providers = [{ provide: "BASE_URL", useFactory: getBaseUrl, deps: [] }];
 
 platformBrowserDynamic(providers)
   .bootstrapModule(PluginBaseModule)
-  .catch((err) => console.error(err));
+  .catch((err) => console.log(err));
