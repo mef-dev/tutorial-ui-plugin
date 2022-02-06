@@ -59,8 +59,7 @@
               "node_modules/systemjs/dist/system.js",
               "node_modules/file-saver/dist/FileSaver.js",
               "node_modules/jqwidgets-scripts/jqwidgets/globalization/globalize.js"
-            ],
-            "es5BrowserSupport": true
+            ]
           },
           "configurations": {
             "development": {
