@@ -12,17 +12,17 @@ import { jqxDropDownListModule } from "jqwidgets-scripts/jqwidgets-ng/jqxdropdow
 import { jqxChartModule } from "jqwidgets-scripts/jqwidgets-ng/jqxchart";
 
 import { AngularDraggableModule } from "angular2-draggable";
-import {
-  BsDropdownModule,
-  AccordionModule,
-  AlertModule,
-  ButtonsModule,
-  CollapseModule,
-  ModalModule,
-  TabsModule,
-  TooltipModule,
-  TypeaheadModule,
-} from "ngx-bootstrap";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+  
 
 import { TranslateModule } from "@ngx-translate/core";
 import { ROUTES, PluginRoutingModule } from "./plugin-routing.module";
@@ -42,6 +42,7 @@ export const SETTINGS = new InjectionToken("SETTINGS");
   imports: [
     CommonModule,
     FormsModule,
+    BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
     AlertModule.forRoot(),
