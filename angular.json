@@ -25,7 +25,6 @@
 					"skipTests": true
 				},
 				"@schematics/angular:module": {
-					"skipTests": true
 				},
 				"@schematics/angular:pipe": {
 					"skipTests": true
@@ -38,7 +37,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/natec-base-plugin",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -59,7 +57,13 @@
               "node_modules/systemjs/dist/system.js",
               "node_modules/file-saver/dist/FileSaver.js",
               "node_modules/jqwidgets-scripts/jqwidgets/globalization/globalize.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "development": {
@@ -76,7 +80,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
