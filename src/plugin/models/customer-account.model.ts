@@ -1,4 +1,4 @@
-import { Deserializable } from "../interfaces/deserializable.model";
+import { Deserializable } from '../interfaces/deserializable.model';
 
 export class CustomerAccountModel implements Deserializable {
 

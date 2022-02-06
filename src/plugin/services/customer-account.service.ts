@@ -1,25 +1,23 @@
-import { StringExt } from './../utils/string-ext.util';
+import {Injectable, Inject} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders }   from '@angular/common/http';
-
-import { CustomerAccountModel } from '../models/customer-account.model'
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Endpoints } from '../endpoints/base-endpoints';
-import { BaseEntity } from '../models/base-entity.model';
-import { Inject } from "@angular/core";
-import { environment } from 'src/environments/environment';
+import {environment} from 'src/environments/environment';
+import {CustomerAccountModel} from '../models/customer-account.model';
+import {BaseEntity} from '../models/base-entity.model';
+import {Endpoints} from '../endpoints/base-endpoints';
+import {StringExt} from './../utils/string-ext.util';
 
 @Injectable()
 export class CustomerAccountsService {
   private headers: HttpHeaders  = new HttpHeaders(
     environment.production ?
-      {"withCredentials" : "true" } :
-      {}​);
+      {withCredentials : 'true' } :
+      {});
 
   baseUrl: string;
-  constructor(@Inject("BASE_URL") baseUrl: string, private http: HttpClient) {
+  constructor(@Inject('BASE_URL') baseUrl: string, private http: HttpClient) {
     this.baseUrl = baseUrl;
   }
 
@@ -30,41 +28,40 @@ export class CustomerAccountsService {
         params
       )}&hateoas=false`,
       { headers: this.headers })
-      .pipe(map(data => data['data'].map(data => new CustomerAccountModel().deserialize(data))));
+      .pipe(map(data => data[`data`].map(dataItem => new CustomerAccountModel().deserialize(dataItem))));
   }
 
   public createCustomerAccount(model: CustomerAccountModel){
 
-    let body: BaseEntity =
+    const body: BaseEntity =
     {
-      Id: "",
+      Id: '',
       Name: model.CLIENT_NAME,
-      ParentId: "",
-      Format: "json",
-      Lang: "uk",
+      ParentId: '',
+      Format: 'json',
+      Lang: 'uk',
       IsCoerced: true,
       CustomAttributes: {}
-    }
+    };
 
     return this.http.post(`${this.baseUrl}${Endpoints.createCustomerAccount}`, body,
     { headers: this.headers });
   }
 
   public updateCustomerAccount(model: CustomerAccountModel){
-      let body: BaseEntity =
+      const body: BaseEntity =
       {
         Id: model.ABN_ID.toString(),
         Name: model.CLIENT_NAME,
-        ParentId: "",
-        Format: "json",
-        Lang: "uk",
+        ParentId: '',
+        Format: 'json',
+        Lang: 'uk',
         IsCoerced: true,
         CustomAttributes: {}
-      }
+      };
 
-    return this.http.put(`${this.baseUrl}${StringExt.Format(Endpoints.setCustomerAccount, model.ABN_ID)}`,
-     body,
-    { headers: this.headers });
+      return this.http.put(`${this.baseUrl}${StringExt.Format(Endpoints.setCustomerAccount, model.ABN_ID)}`,
+     body,    { headers: this.headers });
   }
 
   public deleteCustomerAccount(ABN_ID: number){

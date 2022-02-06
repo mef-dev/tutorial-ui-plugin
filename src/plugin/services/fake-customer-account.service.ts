@@ -1,26 +1,22 @@
-import { StringExt } from './../utils/string-ext.util';
+import {Injectable, Inject} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-
-import { CustomerAccountModel } from '../models/customer-account.model'
-import { Observable, of, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Endpoints } from '../endpoints/base-endpoints';
-import { BaseEntity } from '../models/base-entity.model';
-import { Inject } from "@angular/core";
-import { environment } from 'src/environments/environment';
+import {environment} from 'src/environments/environment';
+import {Endpoints} from '../endpoints/base-endpoints';
+import {CustomerAccountModel} from '../models/customer-account.model';
+import {BaseEntity} from '../models/base-entity.model';
 
 @Injectable()
 export class FakeCustomerAccountsService {
   private headers: HttpHeaders = new HttpHeaders(
     environment.production ?
-      { "withCredentials": "true" } :
+      { withCredentials: 'true' } :
       {});
     url: string;
   baseUrl: string;
-  accounts: CustomerAccountModel[] = [{Id: "1", ACCOUNT: "Demo"} as CustomerAccountModel];
-  constructor(@Inject("BASE_URL") baseUrl: string, private http: HttpClient) {
+  accounts: CustomerAccountModel[] = [{Id: '1', ACCOUNT: 'Demo'} as CustomerAccountModel];
+  constructor(@Inject('BASE_URL') baseUrl: string, private http: HttpClient) {
     this.baseUrl = baseUrl;
   }
 
@@ -38,16 +34,16 @@ export class FakeCustomerAccountsService {
 
   public createCustomerAccount(model: CustomerAccountModel) {
 
-    let body: BaseEntity =
+    const body: BaseEntity =
     {
-      Id: "",
+      Id: '',
       Name: model.CLIENT_NAME,
-      ParentId: "",
-      Format: "json",
-      Lang: "uk",
+      ParentId: '',
+      Format: 'json',
+      Lang: 'uk',
       IsCoerced: true,
       CustomAttributes: {}
-    }
+    };
     this.accounts.push(model);
 
     return this.http.post(`${this.baseUrl}${Endpoints.createCustomerAccount}`, body,
@@ -59,12 +55,12 @@ export class FakeCustomerAccountsService {
     {
       Id: model.ABN_ID.toString(),
       Name: model.CLIENT_NAME,
-      ParentId: "",
-      Format: "json",
-      Lang: "uk",
+      ParentId: '',
+      Format: 'json',
+      Lang: 'uk',
       IsCoerced: true,
       CustomAttributes: {}
-    }
+    };
 
     return this.ok();
   }
@@ -73,9 +69,8 @@ export class FakeCustomerAccountsService {
     return this.ok();
   }
 
-
   // helper functions
-  //headers: any;
+  // headers: any;
   // for interceptor
   // ok(body?) {
   //   return of(new HttpResponse({ status: 200, body }))

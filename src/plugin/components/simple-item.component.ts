@@ -7,7 +7,7 @@ import {FakeCustomerAccountsService} from '../services/fake-customer-account.ser
 
 @Component({
     selector: 'plugin-item',
-    templateUrl: './simple-item.component.html',
+    templateUrl: './simple-item.component.html'
 })
 export class SimpleItemComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class SimpleItemComponent implements OnInit {
         {name: 'ACCOUNT', type: 'string'},
         {name: 'BILL_NO', type: 'string'},
     ];
-    
+
     source: any = {
         datatype: 'json',
         dataFields: this.fields,
@@ -121,7 +121,7 @@ export class SimpleItemComponent implements OnInit {
 
     renderGridRows = (params: any): any => {
         return params.data;
-    };
+    }
 
     beforeLoadComplete(records: any): any {
         for (const key in records) {
@@ -177,7 +177,7 @@ export class SimpleItemComponent implements OnInit {
         this.myGrid.addrow(0, new CustomerAccountModel(), 0);
         this.myGrid.beginrowedit(this.nowEditRow);
         console.log('add row btn');
-    };
+    }
 
     delRowBtnClick = () => {
         console.log('del btn ', this.nowEditRow);
@@ -187,7 +187,7 @@ export class SimpleItemComponent implements OnInit {
         this.rowsToDelete.push(this.myGrid.getrows()[this.nowEditRow]);
         this.isDelRow = true;
         this.saveBtnClick();
-    };
+    }
 
     saveBtnClick = () => {
 
@@ -227,7 +227,7 @@ export class SimpleItemComponent implements OnInit {
         });
         this.rowsToDelete = [];
         this.myGrid.updatebounddata();
-    };
+    }
 
     okRequestAction(actionName: string, req: any): void {
         if (req.id > 0) {
@@ -280,5 +280,5 @@ export class SimpleItemComponent implements OnInit {
         saveChangeButton.addEventHandler('click', this.saveBtnClick);
         deleteRowButton.addEventHandler('click', this.delRowBtnClick);
 
-    };
+    }
 }
