@@ -9,12 +9,30 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {
-        "@schematics/angular:component": {
-          "inlineTemplate": true,
-          "inlineStyle": true,
-          "style": "scss"
-        }
-      },
+				"@schematics/angular:component": {
+					"inlineTemplate": true,
+					"inlineStyle": true,
+					"style": "scss",
+					"skipTests": true
+				},
+				"@schematics/angular:class": {
+					"skipTests": true
+				},
+				"@schematics/angular:directive": {
+					"skipTests": true
+				},
+				"@schematics/angular:guard": {
+					"skipTests": true
+				},
+				"@schematics/angular:module": {
+				},
+				"@schematics/angular:pipe": {
+					"skipTests": true
+				},
+				"@schematics/angular:service": {
+					"skipTests": true
+				}
+			},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -40,10 +58,21 @@
               "node_modules/file-saver/dist/FileSaver.js",
               "node_modules/jqwidgets-scripts/jqwidgets/globalization/globalize.js"
             ],
-            "es5BrowserSupport": true
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "development": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -51,7 +80,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

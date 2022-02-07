@@ -1,19 +1,19 @@
-import { Component, Input, Inject } from "@angular/core";
-import { Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: "app-root",
-  template: ` <router-outlet *ngIf="serviceOk"></router-outlet> `,
+    selector: 'plugin-root',
+    templateUrl: './plugin.component.html'
 })
-export class PluginComponent {
-  serviceOk = false;
-  constructor(private router: Router) 
-  {
-    this.router.navigate([window.location.pathname]);
-  }
 
-  ngOnInit() {
-    this.serviceOk = true;
-  }
+export class PluginComponent implements OnInit {
+    serviceOk = false;
+
+    constructor(private router: Router) {
+        this.router.navigate([window.location.pathname]);
+    }
+
+    ngOnInit() {
+        this.serviceOk = true;
+    }
 }
