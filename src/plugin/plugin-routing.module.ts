@@ -20,10 +20,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class PluginRoutingModule {
-}
+export class PluginRoutingModule {}
 
 export const ROUTES = RouterModule.forRoot(routes);

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, ViewChild} from '@angular/core';
 
 import {jqxGridComponent} from 'jqwidgets-scripts/jqwidgets-ng/jqxgrid';
 
@@ -9,8 +9,7 @@ import {FakeCustomerAccountsService} from '../services/fake-customer-account.ser
     selector: 'plugin-item',
     templateUrl: './simple-item.component.html'
 })
-export class SimpleItemComponent implements OnInit {
-
+export class SimpleItemComponent {
     @ViewChild('myGrid') myGrid: jqxGridComponent;
     public requestsCnt = 0;
     public errReqLog = '';
@@ -81,17 +80,17 @@ export class SimpleItemComponent implements OnInit {
             width: 100,
             columnType: 'checkbox',
             cellBeginEdit: this.cellBeginEdit, search: false, sortable: false, filterable: false
-        }, // ???
+        },
         {text: 'ID Аккаунта', dataField: 'ACCOUNT_ID', width: 75, search: false, sortable: false, filterable: false},
         {text: 'Аккаунт', dataField: 'ACCOUNT', width: 100},
-        {text: 'Номер', dataField: 'BILL_NO', width: 100, search: false, sortable: false, filterable: false}, // ???
+        {text: 'Номер', dataField: 'BILL_NO', width: 100, search: false, sortable: false, filterable: false},
 
     ];
     private rowsToUpdate: Array<CustomerAccountModel> = new Array<CustomerAccountModel>();
     private rowsToCreate: Array<CustomerAccountModel> = new Array<CustomerAccountModel>();
     private rowsToDelete: Array<CustomerAccountModel> = new Array<CustomerAccountModel>();
 
-    //#region init grid
+    // #region init grid
     private nowEditRow = -1;
     private isNewRow = false;
     private isDelRow = false;
@@ -114,9 +113,6 @@ export class SimpleItemComponent implements OnInit {
                     this.loadProcess = false;
                 }
             );
-    }
-
-    ngOnInit() {
     }
 
     renderGridRows = (params: any): any => {
@@ -145,9 +141,9 @@ export class SimpleItemComponent implements OnInit {
         return this.nowEditRow === row;
     }
 
-    //#endregion
+    // #endregion
 
-    //#region logic
+    // #region logic
 
     rowSelect(event: any): void {
         this.nowEditRow = event.args.rowindex;
@@ -190,7 +186,6 @@ export class SimpleItemComponent implements OnInit {
     }
 
     saveBtnClick = () => {
-
         if (this.nowEditRow !== -1) {
             this.myGrid.unselectrow(this.nowEditRow);
         }
@@ -279,6 +274,5 @@ export class SimpleItemComponent implements OnInit {
         addRowButton.addEventHandler('click', this.addRowBtnClick);
         saveChangeButton.addEventHandler('click', this.saveBtnClick);
         deleteRowButton.addEventHandler('click', this.delRowBtnClick);
-
     }
 }
