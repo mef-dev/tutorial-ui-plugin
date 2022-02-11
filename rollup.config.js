@@ -3,7 +3,7 @@ import typescript from "rollup-plugin-typescript2";
 import {PLUGIN_VERSION} from "./src/environments/version";
 import angular from 'rollup-plugin-angular';
 import {minify as minifyHtml} from 'html-minifier';
-import sass from 'node-sass';
+import sass from 'sass';
 import CleanCSS from 'clean-css';
 import copy from "rollup-plugin-copy-assets";
 
@@ -18,8 +18,7 @@ const htmlMinOpts = {
 // const pluginPath = `external_plugins/${PLUGIN_VERSION.name}-${PLUGIN_VERSION.version}`;
 // const plugini18nPath = `${pluginPath}/i18n`;
 
-const pluginPath = `../../src/assets/external-plugins/bf/plugin-bank-feed`;
-
+const pluginPath = `external_plugins/${PLUGIN_VERSION.name}-${PLUGIN_VERSION.version}`;
 
 export default {
     input: "src/main-plugin.ts",
