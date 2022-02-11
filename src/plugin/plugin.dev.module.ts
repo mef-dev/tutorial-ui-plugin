@@ -54,7 +54,7 @@ export const SETTINGS = new InjectionToken('SETTINGS');
         jqxDropDownListModule,
         jqxChartModule,
         HttpClientModule,
-        RouterModule.forChild(routes)
+        RouterModule.forRoot(routes)
     ],
     declarations: [PluginComponent, SimpleItemComponent],
     providers: [

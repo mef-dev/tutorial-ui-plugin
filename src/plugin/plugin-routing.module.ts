@@ -1,9 +1,8 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {Routes} from '@angular/router';
 import {SimpleItemComponent} from './components/simple-item.component';
 import {PluginComponent} from './plugin.component';
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '',
         component: PluginComponent,
@@ -16,8 +15,3 @@ const routes: Routes = [
     },
 ];
 
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-})
-export class PluginRoutingModule {}
