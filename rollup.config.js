@@ -69,6 +69,7 @@ export default {
         "@angular/animations",
         "@angular/platform-browser",
         "@angular/platform-browser-dynamic",
+        "@angular/router",
         "@ngx-translate",
         "@ngx-translate/core",
         "@ngx-translate/http-loader",
@@ -81,7 +82,7 @@ export default {
         'ngx-bootstrap/buttons',
         'ngx-bootstrap/collapse',
         'ngx-bootstrap/tooltip',
-        'ngx-bootstrap/typeahead',
+        'ngx-bootstrap/jqxgrid',
         "file-saver",
         "xlsx",
         "rxjs",
@@ -97,7 +98,5 @@ export default {
         "jqwidgets-ng/jqxloader",
         "jqwidgets-ng/jqxwindow",
         "jqwidgets-ng/jqxexpander",
-        "angular2-draggable",
-        "@angular/router"
     ],
 };
