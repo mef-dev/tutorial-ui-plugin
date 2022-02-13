@@ -1,30 +1,30 @@
 import {Deserializable} from '../interfaces/deserializable.model';
 
 export class CustomerAccountModel implements Deserializable {
-    ACCOUNT_TYPES: string;
-    Total: number;
-    NUM_QTY: number;
-    lang: string;
-    IsExternalID: number;
-    CLIENT_NAME: string;
-    CLIENT_CONTRACT: string;
-    CLI_OKPO: string;
-    ABN_ID: number;
-    ACCOUNT_STATUS_CLOSED: number;
-    ACCOUNT_ID: number;
     ACCOUNT: string;
-    BILL_NO: string;
-    CustomAttributes: any;
-    Format: any;
-    IDType: any;
-    Id: any;
-    IsCoerced: any;
-    Lang: any;
-    Name: any;
-    ParentId: any;
-
-    status_metadata: any;
-    status: any;
+    ACCOUNT_ID: number;
+    ACCOUNT_STATUS_CLOSED: number;
+    ACCOUNT_TYPES: string;
+    CLI_OKPO: string;
+    CLIENT_NAME: string;
+    NUM_QTY: number;
+    Total: number;
+    ABN_ID: number;
+    lang?: string;
+    IsExternalID?: number;
+    CLIENT_CONTRACT?: string;
+    BILL_NO?: string;
+    CustomAttributes?: any;
+    Format?: any;
+    IDType?: any;
+    Id?: any;
+    IsCoerced?: any;
+    Lang?: any;
+    Name?: any;
+    ParentId?: any;
+    // tslint:disable-next-line:variable-name
+    status_metadata?: any;
+    status?: any;
 
     deserialize(input: any): this {
         this.ACCOUNT = input.account;
