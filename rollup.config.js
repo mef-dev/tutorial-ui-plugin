@@ -1,4 +1,4 @@
-import resolve from "rollup-plugin-node-resolve";
+import resolve from "@rollup/plugin-node-resolve";
 import typescript from "rollup-plugin-typescript2";
 import {PLUGIN_VERSION} from "./src/environments/version";
 import angular from 'rollup-plugin-angular';
@@ -44,9 +44,7 @@ export default {
         }),
         resolve({
             // pass custom options to the resolve plugin
-            customResolveOptions: {
-                moduleDirectory: "node_modules",
-            },
+            moduleDirectory: ["node_modules"]
         }),
         typescript({
             typescript: require("typescript"),
@@ -55,7 +53,7 @@ export default {
         }),
         copy({
             assets: [
-                "../assets",
+                "src/assets",
             ],
         }),
 
