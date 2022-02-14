@@ -16,9 +16,12 @@ export class FakeCustomerAccountsService {
     url: string;
   baseUrl: string;
   accounts: CustomerAccountModel[] = [{Id: '1', ACCOUNT: 'Demo'} as CustomerAccountModel];
-  constructor(@Inject('BASE_URL') baseUrl: string, private http: HttpClient) {
-    this.baseUrl = baseUrl;
-  }
+  constructor(
+    @Inject('BASE_URL') baseUrl: string, 
+    @Inject(HttpClient) private http: HttpClient
+    ) {
+      this.baseUrl = baseUrl;
+    }
 
   public getCustomerAccountsByModel(params?: any): Observable<any> { // CustomerAccountModel[]
 

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 
-import {jqxGridComponent} from 'jqwidgets-scripts/jqwidgets-ng/jqxgrid';
+import {jqxGridComponent} from 'jqwidgets-ng/jqxgrid';
 
 import {CustomerAccountModel} from '../models/customer-account.model';
 import {FakeCustomerAccountsService} from '../services/fake-customer-account.service';
@@ -96,7 +96,10 @@ export class SimpleItemComponent implements OnInit {
     private isNewRow = false;
     private isDelRow = false;
 
-    constructor(@Inject('BASE_URL') baseUrl: string, private customerAccountsService: FakeCustomerAccountsService) {
+    constructor(
+        @Inject('BASE_URL') baseUrl: string, 
+        @Inject(FakeCustomerAccountsService) private customerAccountsService: FakeCustomerAccountsService
+    ){
         this.baseUrl = baseUrl;
 
         this.customerAccountsService.getCustomerAccountsByModel({})
@@ -114,7 +117,7 @@ export class SimpleItemComponent implements OnInit {
                     this.loadProcess = false;
                 }
             );
-    }
+        }
 
     ngOnInit() {
     }

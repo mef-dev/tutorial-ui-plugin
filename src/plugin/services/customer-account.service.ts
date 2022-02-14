@@ -17,9 +17,12 @@ export class CustomerAccountsService {
       {});
 
   baseUrl: string;
-  constructor(@Inject('BASE_URL') baseUrl: string, private http: HttpClient) {
-    this.baseUrl = baseUrl;
-  }
+  constructor(
+    @Inject('BASE_URL') baseUrl: string, 
+    @Inject(HttpClient) private http: HttpClient
+    ) {
+      this.baseUrl = baseUrl;
+    }
 
   public getCustomerAccountsByModel(params: any): Observable<CustomerAccountModel[]> {
     return this.http.get<object>(

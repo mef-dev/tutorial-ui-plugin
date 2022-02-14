@@ -3,35 +3,20 @@ import {InjectionToken, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpClientModule,} from '@angular/common/http';
-import {jqxGridModule} from 'jqwidgets-scripts/jqwidgets-ng/jqxgrid';
-import {jqxDateTimeInputModule} from 'jqwidgets-scripts/jqwidgets-ng/jqxdatetimeinput';
-import {jqxDropDownListModule} from 'jqwidgets-scripts/jqwidgets-ng/jqxdropdownlist';
-import {jqxChartModule} from 'jqwidgets-scripts/jqwidgets-ng/jqxchart';
-
-import {AngularDraggableModule} from 'angular2-draggable';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AccordionModule} from 'ngx-bootstrap/accordion';
-import {ButtonsModule} from 'ngx-bootstrap/buttons';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {AlertModule} from 'ngx-bootstrap/alert';
-import {CollapseModule} from 'ngx-bootstrap/collapse';
-import {ModalModule} from 'ngx-bootstrap/modal';
-import {TabsModule} from 'ngx-bootstrap/tabs';
-import {TooltipModule} from 'ngx-bootstrap/tooltip';
-import {TypeaheadModule} from 'ngx-bootstrap/typeahead';
-
+import {jqxGridModule} from 'jqwidgets-ng/jqxgrid';
+import {jqxDateTimeInputModule} from 'jqwidgets-ng/jqxdatetimeinput';
+import {jqxDropDownListModule} from 'jqwidgets-ng/jqxdropdownlist';
+import {jqxChartModule} from 'jqwidgets-ng/jqxchart';
 
 import {TranslateModule} from '@ngx-translate/core';
-import {ROUTES} from './plugin-routing.module';
+import {routes} from './plugin-routing.module';
 import {PLUGIN_VERSION} from 'src/environments/version';
 
 import {PluginComponent} from './plugin.component';
-// import { SimpleListComponent } from "./components/simple-list.component";
 import {SimpleItemComponent} from './components/simple-item.component';
-// import { RowEditWindowComponent} from './components/row-edit-window.component';
 import {CustomerAccountsService} from './services/customer-account.service';
 import {FakeCustomerAccountsService} from './services/fake-customer-account.service';
-// import { CustomerTypesService } from "./services/customer-types.service";
+import { RouterModule } from '@angular/router';
 
 export const SETTINGS = new InjectionToken('SETTINGS');
 
@@ -39,21 +24,9 @@ export const SETTINGS = new InjectionToken('SETTINGS');
     imports: [
         CommonModule,
         FormsModule,
-        BrowserAnimationsModule,
-        BsDropdownModule.forRoot(),
-        AccordionModule.forRoot(),
-        AlertModule.forRoot(),
-        ButtonsModule.forRoot(),
-        CollapseModule.forRoot(),
-        ModalModule.forRoot(),
-        TabsModule.forRoot(),
-        TooltipModule.forRoot(),
-        TypeaheadModule.forRoot(),
-        AngularDraggableModule,
+		RouterModule,
         TranslateModule,
-        ROUTES,
-        BrowserModule,
-        // PluginRoutingModule,
+        RouterModule.forChild(routes),
         jqxGridModule,
         jqxDateTimeInputModule,
         jqxDropDownListModule,
@@ -64,11 +37,9 @@ export const SETTINGS = new InjectionToken('SETTINGS');
     providers: [
         HttpClient,
         {
-            // якщо нема одразу, то точно збілдиться в процесі!
-            provide: PLUGIN_VERSION.name, // "plugin-demo",
+            provide: PLUGIN_VERSION.name,
             useValue: PluginComponent,
         },
-        // CustomerTypesService,
         CustomerAccountsService,
         FakeCustomerAccountsService
     ],
