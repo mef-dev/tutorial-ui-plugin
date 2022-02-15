@@ -16,25 +16,29 @@ import {PluginComponent} from './plugin.component';
 import {SimpleItemComponent} from './components/simple-item.component';
 import {CustomerAccountsService} from './services/customer-account.service';
 import {FakeCustomerAccountsService} from './services/fake-customer-account.service';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
+import { IS_PLUGIN_MODE } from './plugin-mode.helper';
 
 export const SETTINGS = new InjectionToken('SETTINGS');
 
-declare var PLUGIN_MODE: any;
+let importsModules: any[] = [
+    CommonModule,
+    FormsModule,
+    TranslateModule,
+    jqxGridModule,
+    jqxDateTimeInputModule,
+    jqxDropDownListModule,
+    jqxChartModule,
+    HttpClientModule, 
+    IS_PLUGIN_MODE === true ? RouterModule.forChild(routes) : RouterModule.forRoot(routes)
+]
+
+if(IS_PLUGIN_MODE === false){
+    importsModules.push(BrowserModule);
+}
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-		RouterModule,
-        TranslateModule,
-        PLUGIN_MODE === true ? RouterModule.forChild(routes) : RouterModule.forRoot(routes),
-        jqxGridModule,
-        jqxDateTimeInputModule,
-        jqxDropDownListModule,
-        jqxChartModule,
-        HttpClientModule
-    ],
+    imports:importsModules,
     declarations: [PluginComponent, SimpleItemComponent],
     providers: [
         HttpClient,

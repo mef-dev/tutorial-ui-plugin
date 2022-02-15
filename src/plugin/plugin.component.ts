@@ -6,14 +6,6 @@ import {Router} from '@angular/router';
     templateUrl: './plugin.component.html'
 })
 
-export class PluginComponent implements OnInit {
-    serviceOk = false;
+export class PluginComponent {
 
-    constructor(private router: Router) {
-        this.router.navigate([window.location.pathname]);
-    }
-
-    ngOnInit() {
-        this.serviceOk = true;
-    }
 }

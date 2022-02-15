@@ -1,6 +1,6 @@
 {
   "name": "app-customers",
-  "version": "1.0.23",
+  "version": "1.0.36",
   "scripts": {
     "ng": "ng",
     "start": "npm run prebuild && ng serve --configuration=development --port=4201",
