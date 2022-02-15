@@ -2,14 +2,14 @@
 /* tslint:disable */
 export const PLUGIN_VERSION = {
     "dirty": true,
-    "raw": "dd40051-dirty",
-    "hash": "dd40051",
+    "raw": "1d8d97c-dirty",
+    "hash": "1d8d97c",
     "distance": null,
     "tag": null,
     "semver": null,
-    "suffix": "dd40051-dirty",
+    "suffix": "1d8d97c-dirty",
     "semverString": null,
     "name": "app-customers",
-    "version": "1.0.18"
+    "version": "1.0.23"
 };
 /* tslint:enable */

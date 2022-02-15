@@ -67,3 +67,5 @@ Thumbs.db
 /CusomerAccountBilder/bin/Debug/netcoreapp3.1
 /CusomerAccountBilder/obj
 package-lock.json
+src/environments/version.js
+src/environments/version.ts

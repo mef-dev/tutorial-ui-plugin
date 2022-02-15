@@ -20,13 +20,15 @@ import { RouterModule } from '@angular/router';
 
 export const SETTINGS = new InjectionToken('SETTINGS');
 
+declare var PLUGIN_MODE: any;
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
 		RouterModule,
         TranslateModule,
-        RouterModule.forChild(routes),
+        PLUGIN_MODE === true ? RouterModule.forChild(routes) : RouterModule.forRoot(routes),
         jqxGridModule,
         jqxDateTimeInputModule,
         jqxDropDownListModule,

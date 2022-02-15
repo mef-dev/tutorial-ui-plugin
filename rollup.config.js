@@ -21,6 +21,7 @@ export default {
 	output: {
 		file: `${pluginPath}/${PLUGIN_VERSION.name}-${PLUGIN_VERSION.version}.bundle.js`,
 		format: "system",
+		intro: "var PLUGIN_MODE = true;"
 	},
 	plugins: [
 		angular({
@@ -54,7 +55,7 @@ export default {
 			  "../assets",
 			],
 		  }),
-		
+		  
 	],
 	external: [
 		"plugins-core",
