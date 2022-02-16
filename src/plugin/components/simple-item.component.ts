@@ -97,9 +97,9 @@ export class SimpleItemComponent implements OnInit {
     private isDelRow = false;
 
     constructor(
-        @Inject('BASE_URL') baseUrl: string, 
+        @Inject('BASE_URL') baseUrl: string,
         @Inject(FakeCustomerAccountsService) private customerAccountsService: FakeCustomerAccountsService
-    ){
+    ) {
         this.baseUrl = baseUrl;
 
         this.customerAccountsService.getCustomerAccountsByModel({})
@@ -117,7 +117,7 @@ export class SimpleItemComponent implements OnInit {
                     this.loadProcess = false;
                 }
             );
-        }
+    }
 
     ngOnInit() {
     }

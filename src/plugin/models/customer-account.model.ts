@@ -1,4 +1,4 @@
-import { Deserializable } from '../interfaces/deserializable.model';
+import {Deserializable} from '../interfaces/deserializable.model';
 
 export class CustomerAccountModel implements Deserializable {
 
@@ -24,7 +24,8 @@ export class CustomerAccountModel implements Deserializable {
     Name: any;
     ParentId: any;
 
-    status_metadata: any; status: any;
+    status_metadata: any;
+    status: any;
 
     deserialize(input: any): this {
         this.ACCOUNT = input.account;
@@ -38,7 +39,6 @@ export class CustomerAccountModel implements Deserializable {
         this.ABN_ID = input.abN_ID;
         return this;
     }
-
 
 
 }

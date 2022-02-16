@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {InjectionToken, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {HttpClient, HttpClientModule,} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {jqxGridModule} from 'jqwidgets-ng/jqxgrid';
 import {jqxDateTimeInputModule} from 'jqwidgets-ng/jqxdatetimeinput';
 import {jqxDropDownListModule} from 'jqwidgets-ng/jqxdropdownlist';
@@ -17,11 +17,11 @@ import {SimpleItemComponent} from './components/simple-item.component';
 import {CustomerAccountsService} from './services/customer-account.service';
 import {FakeCustomerAccountsService} from './services/fake-customer-account.service';
 import {RouterModule} from '@angular/router';
-import { IS_PLUGIN_MODE } from './plugin-mode.helper';
+import {IS_PLUGIN_MODE} from './plugin-mode.helper';
 
 export const SETTINGS = new InjectionToken('SETTINGS');
 
-let importsModules: any[] = [
+const importsModules: any[] = [
     CommonModule,
     FormsModule,
     TranslateModule,
@@ -29,16 +29,16 @@ let importsModules: any[] = [
     jqxDateTimeInputModule,
     jqxDropDownListModule,
     jqxChartModule,
-    HttpClientModule, 
+    HttpClientModule,
     IS_PLUGIN_MODE === true ? RouterModule.forChild(routes) : RouterModule.forRoot(routes)
-]
+];
 
-if(IS_PLUGIN_MODE === false){
+if (IS_PLUGIN_MODE === false) {
     importsModules.push(BrowserModule);
 }
 
 @NgModule({
-    imports:importsModules,
+    imports: importsModules,
     declarations: [PluginComponent, SimpleItemComponent],
     providers: [
         HttpClient,

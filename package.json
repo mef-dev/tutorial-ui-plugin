@@ -1,6 +1,6 @@
 {
   "name": "app-customers",
-  "version": "1.0.36",
+  "version": "1.0.38",
   "scripts": {
     "ng": "ng",
     "start": "npm run prebuild && ng serve --configuration=development --port=4201",
@@ -27,6 +27,7 @@
     "@types/moment": "^2.13.0",
     "angular2-draggable": "^2.3.2",
     "bootstrap": "^5.1.1",
+    "clean-css": "^5.2.4",
     "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "jqwidgets-ng": "^12.1.2",
@@ -35,11 +36,11 @@
     "moment": "^2.29.1",
     "ng-packagr": "^12.2.1",
     "ngx-translate-multi-http-loader": "^3.0.0",
-    "node-sass": "^6.0.1",
     "pace-js": "^1.0.2",
     "primeicons": "^4.1.0",
     "primeng": "^12.1.1",
     "rxjs": "^6.0.0",
+    "sass": "^1.49.7",
     "tslib": "^2.3.1",
     "xlsx": "^0.17.2",
     "zone.js": "~0.11.4"

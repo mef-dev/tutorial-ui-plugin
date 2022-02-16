@@ -3,7 +3,7 @@ import typescript from "rollup-plugin-typescript2";
 import { PLUGIN_VERSION } from "./src/environments/version";
 import angular from 'rollup-plugin-angular';
 import { minify as minifyHtml } from 'html-minifier';
-import sass from 'node-sass';
+import sass from 'sass';
 import CleanCSS from 'clean-css';
 import copy from "rollup-plugin-copy-assets";
 
