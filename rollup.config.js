@@ -17,11 +17,10 @@ const htmlminOpts = {
 const pluginPath = `external_plugins/${PLUGIN_VERSION.name}-${PLUGIN_VERSION.version}`;
 
 export default {
-	input: "src/main-plugin.ts",
+	input: "src/main.ts",
 	output: {
 		file: `${pluginPath}/${PLUGIN_VERSION.name}-${PLUGIN_VERSION.version}.bundle.js`,
-		format: "system",
-		intro: "var PLUGIN_MODE = true;"
+		format: "system"
 	},
 	plugins: [
 		angular({

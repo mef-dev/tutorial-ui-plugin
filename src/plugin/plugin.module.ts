@@ -9,15 +9,13 @@ import {jqxDropDownListModule} from 'jqwidgets-ng/jqxdropdownlist';
 import {jqxChartModule} from 'jqwidgets-ng/jqxchart';
 
 import {TranslateModule} from '@ngx-translate/core';
-import {routes} from './plugin-routing.module';
 import {PLUGIN_VERSION} from 'src/environments/version';
 
 import {PluginComponent} from './plugin.component';
 import {SimpleItemComponent} from './components/simple-item.component';
 import {CustomerAccountsService} from './services/customer-account.service';
 import {FakeCustomerAccountsService} from './services/fake-customer-account.service';
-import {RouterModule} from '@angular/router';
-import {IS_PLUGIN_MODE} from './plugin-mode.helper';
+import {PluginRoutes, devMode} from './plugin.routing';
 
 export const SETTINGS = new InjectionToken('SETTINGS');
 
@@ -30,10 +28,10 @@ const importsModules: any[] = [
     jqxDropDownListModule,
     jqxChartModule,
     HttpClientModule,
-    IS_PLUGIN_MODE === true ? RouterModule.forChild(routes) : RouterModule.forRoot(routes)
+    PluginRoutes
 ];
 
-if (IS_PLUGIN_MODE === false) {
+if (devMode) {
     importsModules.push(BrowserModule);
 }
 
