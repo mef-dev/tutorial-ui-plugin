@@ -3,7 +3,7 @@ import typescript from "rollup-plugin-typescript2";
 import { PLUGIN_VERSION } from "./src/environments/version";
 import angular from 'rollup-plugin-angular';
 import { minify as minifyHtml } from 'html-minifier';
-import sass from 'node-sass';
+import sass from 'sass';
 import CleanCSS from 'clean-css';
 import copy from "rollup-plugin-copy-assets";
 
@@ -17,11 +17,10 @@ const htmlminOpts = {
 const pluginPath = `external_plugins/${PLUGIN_VERSION.name}-${PLUGIN_VERSION.version}`;
 
 export default {
-	input: "src/main-plugin.ts",
+	input: "src/main.ts",
 	output: {
 		file: `${pluginPath}/${PLUGIN_VERSION.name}-${PLUGIN_VERSION.version}.bundle.js`,
-		format: "system",
-		intro: "var PLUGIN_MODE = true;"
+		format: "system"
 	},
 	plugins: [
 		angular({
