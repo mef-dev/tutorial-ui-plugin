@@ -1,15 +1,13 @@
-// IMPORTANT: THIS FILE IS AUTO GENERATED! DO NOT MANUALLY EDIT OR CHECKIN!
-/* tslint:disable */
 export const PLUGIN_VERSION = {
     "dirty": true,
-    "raw": "1836d82-dirty",
-    "hash": "1836d82",
+    "raw": "b8ccf82-dirty",
+    "hash": "b8ccf82",
     "distance": null,
     "tag": null,
     "semver": null,
-    "suffix": "1836d82-dirty",
+    "suffix": "b8ccf82-dirty",
     "semverString": null,
-    "name": "app-customers",
-    "version": "1.0.36"
+    "name": "test-app",
+    "version": "0.0.1",
+    "main": "main.js"
 };
-/* tslint:enable */

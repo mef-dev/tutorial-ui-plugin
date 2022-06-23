@@ -1,24 +1,40 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "suppressImplicitAnyIndexErrors": true,
+    "strictPropertyInitialization": false,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "paths": {
+      "mef-dev-platform-connector": [
+        "dist/mef-dev-platform-connector/mef-dev-platform-connector",
+        "dist/mef-dev-platform-connector"
+      ]
+    },
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "downlevelIteration": true,
     "experimentalDecorators": true,
+    "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "target": "es2017",
+    "module": "esnext",
     "lib": [
-      "es2018",
+      "es2020",
       "dom"
     ]
   },
   "angularCompilerOptions": {
-    "enableIvy": false
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }

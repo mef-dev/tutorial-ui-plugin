@@ -1,14 +1,12 @@
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {PluginBaseModule} from './plugin/plugin.module';
-import {environment} from './environments/environment';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-export {PluginBaseModule} from './plugin/plugin.module';
-export function getBaseUrl() {
-    return environment.apiUrl; // document.getElementsByTagName("base")[0].href;
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
 }
 
-const providers = [{provide: 'BASE_URL', useFactory: getBaseUrl, deps: []}];
-
-platformBrowserDynamic(providers)
-    .bootstrapModule(PluginBaseModule)
-    .catch((err) => console.log(err));
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
