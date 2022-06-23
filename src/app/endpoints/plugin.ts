@@ -1,4 +1,4 @@
-import { PlatformHelper, PluginLocalData } from "mef-dev-platform-connector"
+import { PlatformHelper, PluginLocalData } from "@natec/mef-dev-platform-connector"
 
 const info:PluginLocalData = PlatformHelper.getPluginData();
 

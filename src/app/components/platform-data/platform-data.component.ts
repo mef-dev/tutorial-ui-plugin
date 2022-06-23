@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformConnectorService } from 'src/app/services/platform-connector.service';
-import { PlatformHelper } from 'mef-dev-platform-connector';
-import { HttpService } from 'src/app/services/http.service';
+import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 
 @Component({
   selector: 'app-platform-data',

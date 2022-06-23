@@ -11,12 +11,7 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "paths": {
-      "mef-dev-platform-connector": [
-        "dist/mef-dev-platform-connector/mef-dev-platform-connector",
-        "dist/mef-dev-platform-connector"
-      ]
-    },
+    "paths": {},
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,

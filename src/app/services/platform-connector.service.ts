@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IHttpService, PluginLocalData, PlatformHelper } from 'mef-dev-platform-connector'; // TODO:
+import { IHttpService, PluginLocalData, PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { HttpService } from './http.service';
 
 @Injectable({

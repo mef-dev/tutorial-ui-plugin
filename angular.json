@@ -107,36 +107,6 @@
         }
       }
     }
-      "projectType": "library",
-      "root": "projects/mef-dev-platform-connector",
-      "sourceRoot": "projects/mef-dev-platform-connector/src",
-      "prefix": "mef-dev",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/mef-dev-platform-connector/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/mef-dev-platform-connector/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/mef-dev-platform-connector/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/mef-dev-platform-connector/src/test.ts",
-            "tsConfig": "projects/mef-dev-platform-connector/tsconfig.spec.json",
-            "karmaConfig": "projects/mef-dev-platform-connector/karma.conf.js"
-          }
-        }
-      }
-    }
   },
   "defaultProject": "platform-connector"
 }

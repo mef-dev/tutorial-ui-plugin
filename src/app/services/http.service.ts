@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IHttpService } from 'mef-dev-platform-connector';
+import { IHttpService } from '@natec/mef-dev-platform-connector';
 import { Observable } from 'rxjs';
 
 @Injectable({

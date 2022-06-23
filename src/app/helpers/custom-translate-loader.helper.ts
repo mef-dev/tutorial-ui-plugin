@@ -1,9 +1,8 @@
 import {TranslateLoader} from '@ngx-translate/core';
-import { IHttpService, PlatformHelper } from 'mef-dev-platform-connector';
+import { IHttpService, PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { Observable , forkJoin} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpService } from '../services/http.service';
-import { PlatformConnectorService } from '../services/platform-connector.service';
 
 export class CustomLoader implements TranslateLoader {
 
