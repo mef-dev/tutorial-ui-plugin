@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PlatformHelper } from '@angular-devkit/build-angular';
+import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 
 import { ContainerComponent } from './components/container/container.component';
 import { PlatformDataComponent } from './components/platform-data/platform-data.component';
