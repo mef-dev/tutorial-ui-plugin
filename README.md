@@ -86,3 +86,7 @@ Script for generation a build of package version.
 
 ### build:plugin:watch
 Script for generation a build of debug package version, in uninterrupted mode, and *without code optimization*. Can be used for debug.
+
+# Useful links
+
+> *Guide to register package into the platform: https://mef.dev/en/dev_guides/upload_ui_plugin.md*
