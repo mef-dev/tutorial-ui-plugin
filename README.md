@@ -1,30 +1,39 @@
 
-# UI plugin
+# Creation of UI package with Backend logic
 
-> Перед початком потрібно встановити [nodejs](https://nodejs.org/) та [@angular/cli](https://www.npmjs.com/package/@angular/cli)
+> *Prerequisites. Before you begin, you have got to install [nodejs](https://nodejs.org) and [@angular/cli] (https://www.npmjs.com/package/@angular/cli)*
 
-Даний репозиторій є розширеним варіантом архітектури плагіна для платформи [mef.dev](https://mef.dev/). Для кращого розуміння мотвів та рішень, радимо ознайомитись з [просесом створення базового плагіна](https://mef.dev/dev_guides/first_ui_plugin.php). 
+> *Note. Tested on the following versions of @angular/cli: [12.2.17](https://www.npmjs.com/package/@angular/cli/v/12.2.17 "12.2.17"), [13.3.8](https://www.npmjs.com/package/@angular/cli/v/13.3.8 "13.3.8")*
+ 
+> Any UI platform package does not lose the ability to run locally with the command `ng serve`. This mode of operation is characterized by the lack of capabilities provided by the platform "on the air". The functionality presented here helps to keep partial capabilities for this operation mode.
 
-Плагін **не** матиме реалізацій коду. Його мета- окреслення базової архітектури проекту та надання прикладів реалізації стандартних засобів розробки Angular-аплікацій. 
+This repository is an extended example of the package within the [mef.dev] (https://mef.dev/) platform. Design-wise, we recommend using this example after covering **[the process of creating the basic plugin](https://mef.dev/en/dev_guides/first_ui_plugin.md)**.
 
-Протестовано на таких версіях @angular/cli: [12.2.17](https://www.npmjs.com/package/@angular/cli/v/12.2.17 "12.2.17"), [13.3.8](https://www.npmjs.com/package/@angular/cli/v/13.3.8 "13.3.8") 
+This plugin will **not** have business logic implementation. Its purpose is to explain the Angular project design for interaction with a custom backend within the platform.
 
-Будь який плагін для платформи не втрачає можливості запускатися локально за допомогою команди `ng serve`. Цей режим роботи характеризується відсутністю засобів, що надає платформа. Функціонал представлений тут, допомагає зберегти часткову працездатність в такому режимі. 
+The repository is designed to run as `Portal` type of package together with the package example: [tutorial-backend-plugin](https://github.com/mef-dev/tutorial-backend-plugin).
 
-## class  PlatformConnectorService
-Призначений для зручної роботи з відправленням HTTP запитів. Його задачею є привести отрмання сервісу для відправлення запитів в зрозумілій та близькій для Angular-розробника формі(за допомогою  [HttpClient](https://angular.io/api/common/http/HttpClient#httpclient "Link to this heading")).   
+## Portal type of package
 
-Формат сервісу допомагає використовувати [Dependency injection](https://angular.io/guide/dependency-injection). Крім того, в випадку локального запуску сервіс може надавати власну реалізацію інтерфейсу `IHttpService`, в данній реалізації це `HttpService`.
+The process of building and uploading packages does not differ from previous guides, except selecting the `Portal` type of package by registration. This type of package is oriented to Frontend + Backend operation, respectively, the data for the front and back component should be configured properly.
+
+## class PlatformConnectorService
+
+Designed to easy handling HTTP requests. Its purpose is to implement the HTTP sending service to a transparent and close to Angular-developer form (using [HttpClient](https://angular.io/api/common/http/HttpClient#httpclient)).   
+
+The implementation service helps to use [Dependency injection](https://angular.io/guide/dependency-injection). Moreover, in the case of local running, the service will provide its own implementation of the `IHttpService` interface, for this example that is the `HttpService` implementation.
 
 ## interface IHttpService
-Являє собою обгортку для зтандартних HTTP запитів. Платформа надає клас що реалізує даний сервіс для відправлення запитів від імені платформи. Також його можна реалізовувати власними силами в любій зручній формі.
 
-## Реалізація перекладу
-Збудована на основі [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core). Проблема заключається в тому, що **ассети плагіна у випадку роботи в межах платформи знаходяться не в стандартному місці розміщення**. 
+It is a wrapper for standard HTTP requests. The platform provides a class that implements this service to send requests on behalf of the platform. It can also be implemented as your own in any convenient form.
 
-Для отримання ассетів платформа за допомогою [@natec/mef-dev-platform-connector](https://www.npmjs.com/package/@natec/mef-dev-platform-connector), надає місце їх розміщення. 
+## Translation implementation
 
-Для вирішення використовуєтья кастомний лоадер:
+Built on [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core). The problem is that **plug-in assets in the case of working within the platform are in an unusual location**.
+
+To obtain assets, the platform provides their location by [@natec/mef-dev-platform-connector](https://www.npmjs.com/package/@natec/mef-dev-platform-connector).
+
+A custom loader is used for this solution case:
 ```
 // src/app.module.ts
 ...
@@ -38,7 +47,7 @@ TranslateModule.forRoot({
 ...
 ```
 
-## npm скрипти
+## npm scripts
 ```
 // package.json
 ...
@@ -56,11 +65,11 @@ TranslateModule.forRoot({
 ```
 
 ### generate-version-file
-Команда використовує скрипт з  [@natec/mef-dev-platform-connector](https://www.npmjs.com/package/@natec/mef-dev-platform-connector), який генерує файли із специфікацією конкретної версією плагіну. 
 
-Він добавлений в усі методи, що генерують нові версії аплікації.
+The command use the script from [@natec/mef-dev-platform-connector](https://www.npmjs.com/package/@natec/mef-dev-platform-connector) to generate the version specification file for the package. 
 
-Результати його виконання використовують ассети, також енвайропменти:
+It is included into all methods are genereting new versions of packages.
+Execution result is used by assets and environments:
  ```
 // src/environments/environment.ts
 
@@ -72,8 +81,8 @@ export  const  environment = {
  ```
 
 ### build:plugin
-Скрипт для генерації збірки плагіну. 
+Script for generation a build of package version. 
 
 
 ### build:plugin:watch
-Скрипт для генерації збірки плагіну, в безперебійному режимі, та *без оптимізації коду*. Може використовуватись для відладки.
+Script for generation a build of debug package version, in uninterrupted mode, and *without code optimization*. Can be used for debug.
