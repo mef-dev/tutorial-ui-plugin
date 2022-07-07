@@ -1,13 +1,13 @@
 export const PLUGIN_VERSION = {
     "dirty": true,
-    "raw": "3fc372d-dirty",
-    "hash": "3fc372d",
+    "raw": "aaa86e0-dirty",
+    "hash": "aaa86e0",
     "distance": null,
     "tag": null,
     "semver": null,
-    "suffix": "3fc372d-dirty",
+    "suffix": "aaa86e0-dirty",
     "semverString": null,
     "name": "test-app",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "main": "main.js"
 };

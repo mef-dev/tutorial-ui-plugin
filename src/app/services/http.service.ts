@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IHttpService } from '@natec/mef-dev-platform-connector';
 import { Observable } from 'rxjs';
@@ -11,106 +11,126 @@ export class HttpService implements IHttpService {
 	constructor(public http: HttpClient) {}
 
 	get(
-		path: string,
-		params?: HttpParams,
-		headers: HttpHeaders = new HttpHeaders()
+		path: string, options?: {
+			headers?: HttpHeaders | {
+				[header: string]: string | string[];
+			};
+			context?: HttpContext;
+			observe?: 'body';
+			params?: HttpParams | {
+				[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+			};
+			reportProgress?: boolean;
+			responseType?: 'json';
+			withCredentials?: boolean;
+		}
 	): Observable<any> {
-		return this.http.get(path, {
-			params: params,
-			headers: headers,
-			withCredentials: true,
-		});
+		return this.http.get(path, options);
 	}
 
 	getT<T>(
-		path: string,
-		params?: HttpParams,
-		headers: HttpHeaders = new HttpHeaders()
+		path: string, options?: {
+			headers?: HttpHeaders | {
+				[header: string]: string | string[];
+			};
+			context?: HttpContext;
+			observe?: 'body';
+			params?: HttpParams | {
+				[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+			};
+			reportProgress?: boolean;
+			responseType?: 'json';
+			withCredentials?: boolean;
+		}
 	): Observable<T> {
-		return this.http.get<T>(path, {
-			params: params,
-			headers: headers,
-			withCredentials: true,
-		});
+		return this.http.get<T>(path, options);
 	}
 
 	post(
-		path: string,
-		body?: any,
-		params?: HttpParams,
-		headers: HttpHeaders = new HttpHeaders(),
-		reportProgress: boolean = false
+		path: string, body: any | null, options?: {
+			headers?: HttpHeaders | {
+				[header: string]: string | string[];
+			};
+			context?: HttpContext;
+			observe?: 'body';
+			params?: HttpParams | {
+				[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+			};
+			reportProgress?: boolean;
+			responseType?: 'json';
+			withCredentials?: boolean;
+		}
 	): Observable<any> {
-		return this.http.post(path, body, {
-			params: params,
-			headers: headers,
-			withCredentials: true,
-			reportProgress: reportProgress,
-		});
+		return this.http.post(path, body, options);
 	}
 
-  postSimple(
-    path: string,
-    body?: any,
-    responseType?: any,
-    params?: HttpParams,
-    headers: HttpHeaders = new HttpHeaders(),
-    reportProgress: boolean = false
-  ): Observable<any> {
-    return this.http.post(path, body, {
-      params: params,
-      headers: headers,
-      withCredentials: true,
-      responseType: responseType,
-      reportProgress: reportProgress,
-    });
+	postSimple(
+		path: string, body: any | null, options?: {
+			headers?: HttpHeaders | {
+				[header: string]: string | string[];
+			};
+			context?: HttpContext;
+			observe?: 'body';
+			params?: HttpParams | {
+				[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+			};
+			reportProgress?: boolean;
+			responseType?: 'json';
+			withCredentials?: boolean;
+		}): Observable<any> {
+    return this.http.post(path, body, options);
   }
 
 
 	postT<T>(
-		path: string,
-		body?: any,
-		params?: HttpParams,
-		headers: HttpHeaders = new HttpHeaders()
-	): Observable<T> {
-		return this.http.post<T>(path, body, {
-			params: params,
-			headers: headers,
-			withCredentials: true,
-		});
+		path: string, body: any | null, options?: {
+			headers?: HttpHeaders | {
+				[header: string]: string | string[];
+			};
+			context?: HttpContext;
+			observe?: 'body';
+			params?: HttpParams | {
+				[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+			};
+			reportProgress?: boolean;
+			responseType?: 'json';
+			withCredentials?: boolean;
+		}): Observable<T> {
+		return this.http.post<T>(path, body, options);
 	}
 
 	del(
-		path: string,
-		body?: any,
-		responseType?: any,
-		params?: HttpParams,
-		headers: HttpHeaders = new HttpHeaders(),
-		reportProgress: boolean = false
-	  ): Observable<any> {
-		return this.http.delete(path, {
-		  params: params,
-		  headers: headers,
-		  withCredentials: true,
-		  responseType: responseType,
-		  reportProgress: reportProgress,
-		});
+		path: string, options?: {
+			headers?: HttpHeaders | {
+				[header: string]: string | string[];
+			};
+			context?: HttpContext;
+			observe?: 'body';
+			params?: HttpParams | {
+				[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+			};
+			reportProgress?: boolean;
+			responseType?: 'json';
+			withCredentials?: boolean;
+			body?: any | null;
+		}): Observable<any> {
+		return this.http.delete(path, options);
 	  }
 
-  deleteT<T>(
-    path: string,
-    body?: any,
-    responseType?: any,
-    params?: HttpParams,
-    headers: HttpHeaders = new HttpHeaders(),
-    reportProgress: boolean = false
-  ): Observable<any> {
-    return this.http.delete<T>(path, {
-      params: params,
-      headers: headers,
-      withCredentials: true,
-      responseType: responseType,
-      reportProgress: reportProgress,
-    });
+  deleteT<T>(path: string, options?: {
+	headers?: HttpHeaders | {
+		[header: string]: string | string[];
+	};
+	context?: HttpContext;
+	observe?: 'body';
+	params?: HttpParams | {
+		[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+	};
+	reportProgress?: boolean;
+	responseType?: 'json';
+	withCredentials?: boolean;
+	body?: any | null;
+}): Observable<any> {
+    return this.http.delete<T>(path, options);
   }
 }
