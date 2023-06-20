@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 export class HttpService implements IHttpService {
 
 	constructor(public http: HttpClient) {}
+	put(url: string, body: any, options?: { headers?: HttpHeaders | { [header: string]: string | string[]; } | undefined; context?: HttpContext | undefined; observe?: 'body' | undefined; params?: HttpParams | { [param: string]: string | number | boolean | readonly (string | number | boolean)[]; } | undefined; reportProgress?: boolean | undefined; responseType?: any; withCredentials?: boolean | undefined; } | undefined): Observable<Object> {
+		throw new Error('Method not implemented.');
+	}
 
 	get(
 		path: string, options?: {
