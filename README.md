@@ -3,11 +3,11 @@
 
 > *Prerequisites. Before you begin, you have got to install [nodejs](https://nodejs.org) and [@angular/cli](https://www.npmjs.com/package/@angular/cli)*
 
-> *Note. Tested on the following versions of @angular/cli: [12.2.17](https://www.npmjs.com/package/@angular/cli/v/12.2.17 "12.2.17"), [13.3.8](https://www.npmjs.com/package/@angular/cli/v/13.3.8 "13.3.8")*
+> *Note. Tested on the following versions of @angular/cli: [12.2.17](https://www.npmjs.com/package/@angular/cli/v/12.2.17 "12.2.17"), [13.3.8](https://www.npmjs.com/package/@angular/cli/v/13.3.8 "13.3.8"), [14.3.0](https://www.npmjs.com/package/@angular/cli/v/14.2.11 "14.3.0"), [15.2.8](https://www.npmjs.com/package/@angular/cli/v/15.2.8 "15.2.8"), [16.1.0](https://www.npmjs.com/package/@angular/cli/v/16.1.0 "16.1.0")*
  
 > Any UI platform package does not lose the ability to run locally with the command `ng serve`. This mode of operation is characterized by the lack of capabilities provided by the platform "on the air". The functionality presented here helps to keep partial capabilities for this operation mode.
 
-This repository is an extended example of the package within the [mef.dev](https://mef.dev/) platform. Design-wise, we recommend using this example after covering **[the process of creating the basic plugin](https://mef.dev/en/dev_guides/first_ui_plugin.md)**.
+This repository is an extended example of the package within the [mef.dev](https://mef.dev/) platform. Design-wise, we recommend using this example after covering **[the process of creating the basic plugin](https://mef.dev/dev_guides/first_ui_plugin.md)**.
 
 This plugin will **not** have business logic implementation. Its purpose is to explain the Angular project design for interaction with a custom backend within the platform.
 
@@ -89,4 +89,4 @@ Script for generation a build of debug package version, in uninterrupted mode, a
 
 # Useful links
 
-> *Guide to register package into the platform: https://mef.dev/en/dev_guides/upload_ui_plugin.md*
+> *Guide to register package into the platform: https://mef.dev/dev_guides/upload_ui_plugin.md *
