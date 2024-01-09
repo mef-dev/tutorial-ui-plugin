@@ -1,52 +1,53 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlatformDataComponent } from './components/platform-data/platform-data.component';
-import { PluginApiComponent } from './components/plugin-api/plugin-api.component';
+import { RouterModule, Routes } from '@angular/router';
+import { PlatformHelper } from '@natec/mef-dev-platform-connector';
+import { TestComponent } from './components/test/test.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { CredInterceptor } from './interceptors/cred.interceptor';
 
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { CustomLoader } from './helpers/custom-translate-loader.helper';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+const routes: Routes = PlatformHelper.updatePluginsRoutes([
+  {
+    path: '',
+    children: [
+      {
+        path: '',
+        redirectTo: 'test',
+        pathMatch: 'full',
+      },
+      {
+        path: 'test',
+        component: TestComponent
+      },
+    ]
+  }
+]);
 
-import { AuthInterceptor } from './intercept/http-mw.intercept';
-import { PluginInfoComponent } from './components/plugin-info/plugin-info.component';
-import { ContainerComponent } from './components/container/container.component';
-import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlatformDataComponent,
-    PluginApiComponent,
-    PluginInfoComponent,
-    ContainerComponent
+    TestComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-			loader: {
-				provide: TranslateLoader,
-				useClass: CustomLoader,
-				deps: [HttpClient],
-			}
-		}),
-    NgxJsonViewerModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: CredInterceptor,
       multi: true,
     },
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private translate:TranslateService) {
-    this.translate.setDefaultLang(localStorage.getItem('language') ?? 'en');
-	}   
- }
+export class AppModule { }

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'test-app', // selector is pluginUIName(in platform)
-  template: `<router-outlet></router-outlet>`
+  selector: 'december-new-plugin',
+  template: `<router-outlet></router-outlet>`,
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent{
-  title = 'platform-connector';
-  constructor(  ){
-  }
+export class AppComponent {
+
 }
