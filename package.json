@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run generate-version-file && ng serve",
-    "build": "npm run generate-version-file && ng build",
-    "watch": "npm run generate-version-file && ng build --watch --configuration development",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "generate-version-file": "npm explore @natec/mef-dev-platform-connector -- npm run generate-version-file",
     "build:plugin": "npm run generate-version-file && ng build --prod --output-hashing none --single-bundle",
