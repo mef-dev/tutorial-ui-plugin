@@ -2,52 +2,51 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
-import { PlatformHelper } from '@natec/mef-dev-platform-connector';
-import { TestComponent } from './components/test/test.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CredInterceptor } from './interceptors/cred.interceptor';
-
-const routes: Routes = PlatformHelper.updatePluginsRoutes([
-  {
-    path: '',
-    children: [
-      {
-        path: '',
-        redirectTo: 'test',
-        pathMatch: 'full',
-      },
-      {
-        path: 'test',
-        component: TestComponent
-      },
-    ]
-  }
-]);
-
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import {  AuthInterceptor} from "./interceptors/auth.interceptor";
+import { ContainerComponent } from './components/container/container.component';
+import { PlatformDataComponent } from './components/platform-data/platform-data.component';
+import { PluginApiComponent } from './components/plugin-api/plugin-api.component';
+import { PluginInfoComponent } from './components/plugin-info/plugin-info.component';
+import { AppRoutingModule } from './app-routing.module';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CustomLoader } from './helpers/custom-translate-loader.helper';
+import { NgxJsonViewerModule  } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    ContainerComponent,
+    PlatformDataComponent,
+    PluginApiComponent,
+    PluginInfoComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: CustomLoader,
+        deps: [HttpClient],
+      }
+    }),
+    NgxJsonViewerModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true
-    // },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: CredInterceptor,
-      multi: true,
+      useClass: AuthInterceptor,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private translate:TranslateService) {
+    this.translate.setDefaultLang(localStorage.getItem('language') ?? 'en');
+  }
+
+}

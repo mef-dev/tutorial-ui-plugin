@@ -26,8 +26,8 @@
     "fs-extra": "^10.1.0",
     "git-describe": "^4.1.1",
     "ngx-build-plus": "^16.0.0",
-    "ngx-json-viewer": "^3.0.2",
-    "rxjs": "~7.5.0",
+    "ngx-json-viewer": "^3.2.1",
+    "rxjs": "~7.8.1",
     "tslib": "^2.6.2",
     "zone.js": "^0.13.3"
   },

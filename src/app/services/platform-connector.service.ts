@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
 import { IHttpService, PlatformHelper, PluginLocalData } from '@natec/mef-dev-platform-connector';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
