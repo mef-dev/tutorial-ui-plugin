@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'december-new-plugin',
+  selector: 'test-app',
   template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
