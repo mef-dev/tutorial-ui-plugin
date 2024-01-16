@@ -1,13 +1,13 @@
-import { PlatformHelper, PluginLocalData } from '@natec/mef-dev-platform-connector';
-import { environment } from '../../environments/environment';
+import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 
-const info: PluginLocalData = PlatformHelper?.getPluginData();
+const info = PlatformHelper?.getPluginData();
+let baseApiUrl = `${info?.pluginApiUrl}${info.alias}/`;
 
-const api = environment.production ?
-    info.pluginApiUrl.replace('/api/v1/', '/api/v0/') :
-    `${environment?.apiUrl}/api/v0/`;
+if (baseApiUrl.includes('/v0/') || baseApiUrl.includes('/v1/')) {
+    baseApiUrl = baseApiUrl.replace(/\/v[01]\//, '/v2/');
+}
 
 export const PluginEndpoints = {
-    getInfo: `${info.pluginApiUrl}${info.alias}/plugins/${info.pluginMefName}/version.json?detaillevel=detailed`,
-    get: `${info.pluginApiUrl}${info.alias}/${info.pluginMefName}`,
-}
+    getInfo: `${baseApiUrl}restresource/12`,
+    createItem: `${baseApiUrl}restresource/create-item`
+};

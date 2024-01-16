@@ -15,7 +15,7 @@ export class PluginInfoComponent implements OnInit {
   ngOnInit(): void {
     this.platformApiService.getInfo().subscribe((data: any) => {
           this.data = data;
-    })
+    });
   }
 
 }

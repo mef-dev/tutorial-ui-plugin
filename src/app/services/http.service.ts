@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IHttpService } from '@natec/mef-dev-platform-connector';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class HttpService {
+export class HttpService implements IHttpService {
 
     constructor(public http: HttpClient) {}
 
@@ -24,8 +25,7 @@ export class HttpService {
         throw new Error('Method not implemented.');
     }
 
-    get(
-        path: string, options?: {
+    get(path: string, options?: {
             headers?: HttpHeaders | {
                 [header: string]: string | string[];
             };
@@ -37,13 +37,11 @@ export class HttpService {
             reportProgress?: boolean;
             responseType?: 'json';
             withCredentials?: boolean;
-        }
-    ): Observable<any> {
+        }): Observable<any> {
         return this.http.get(path, options);
     }
 
-    getT<T>(
-        path: string, options?: {
+    getT<T>(path: string, options?: {
             headers?: HttpHeaders | {
                 [header: string]: string | string[];
             };
@@ -55,13 +53,11 @@ export class HttpService {
             reportProgress?: boolean;
             responseType?: 'json';
             withCredentials?: boolean;
-        }
-    ): Observable<T> {
+        }): Observable<T> {
         return this.http.get<T>(path, options);
     }
 
-    post(
-        path: string, body: any | null, options?: {
+    post(path: string, body: any | null, options?: {
             headers?: HttpHeaders | {
                 [header: string]: string | string[];
             };
@@ -73,13 +69,11 @@ export class HttpService {
             reportProgress?: boolean;
             responseType?: 'json';
             withCredentials?: boolean;
-        }
-    ): Observable<any> {
+        }): Observable<any> {
         return this.http.post(path, body, options);
     }
 
-    postT<T>(
-        path: string, body: any | null, options?: {
+    postT<T>(path: string, body: any | null, options?: {
             headers?: HttpHeaders | {
                 [header: string]: string | string[];
             };
@@ -95,8 +89,7 @@ export class HttpService {
         return this.http.post<T>(path, body, options);
     }
 
-    del(
-        path: string, options?: {
+    del(path: string, options?: {
             headers?: HttpHeaders | {
                 [header: string]: string | string[];
             };

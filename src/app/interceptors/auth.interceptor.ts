@@ -6,7 +6,8 @@ import {
   HttpInterceptor,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -18,9 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
       headers: req.headers
     });
 
-    // @ts-ignore
-    if(!environment.production && environment?.['bauth']){
+    if (!environment.production && environment?.['bauth']) {
       authReq = req.clone({
+        withCredentials: true,
         headers: req.headers
             // @ts-ignore
             .set('Authorization', `Basic ${btoa(environment.bauth)}`)
@@ -28,8 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(authReq).pipe(
-        tap((event) => {
-            },
+        tap((event) => {},
             (err) => {
               if (err instanceof HttpErrorResponse) {
                 if (err.status == 401)

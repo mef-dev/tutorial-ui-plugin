@@ -1,21 +1,34 @@
 import { Injectable } from '@angular/core';
-import { PlatformConnectorService } from './platform-connector.service';
 import { Observable } from 'rxjs';
 import { PluginEndpoints } from '../endpoints/plugin';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlatformApiService {
 
-  constructor(private platformConnectorService: PlatformConnectorService) { }
+  constructor(private httpClient: HttpClient) { }
 
   getInfo(): Observable<any> {
-    return this.platformConnectorService.HttpClient.get(PluginEndpoints.getInfo)
+    return this.httpClient.get(PluginEndpoints.getInfo);
   }
 
-  get(): Observable<any> {
-    return this.platformConnectorService.HttpClient.get(PluginEndpoints.get)
+  createItem(data: any): Observable<any> {
+    return this.httpClient.post(PluginEndpoints.createItem, data);
   }
+
+  // doesn't work with interceptor
+
+  // constructor(private platformConnectorService: PlatformConnectorService) { }
+  //
+  // getInfo(): Observable<any> {
+  //   return this.platformConnectorService.HttpClient.get(PluginEndpoints.getInfo);
+  // }
+  //
+  // createItem(data: any): Observable<any> {
+  //   return this.platformConnectorService.HttpClient.post(PluginEndpoints.createItem, data);
+  // }
+
 
 }

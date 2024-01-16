@@ -7,12 +7,12 @@ import { HttpService } from './http.service';
 })
 export class PlatformConnectorService {
 
-  private platformHttpService: IHttpService | undefined = PlatformHelper.getPlatformHttpClient();
+  private platformHttpService: IHttpService = PlatformHelper.getPlatformHttpClient();
 
-  constructor(private httpService: HttpService) { }
+  constructor(private http: HttpService) { }
 
   get HttpClient(): IHttpService {
-    return <IHttpService>this.platformHttpService ?? this.httpService;
+    return this.platformHttpService ?? this.http;
   }
 
   get PluginData(): PluginLocalData | undefined{

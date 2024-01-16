@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import {  AuthInterceptor} from "./interceptors/auth.interceptor";
+import { AuthInterceptor} from './interceptors/auth.interceptor';
 import { ContainerComponent } from './components/container/container.component';
 import { PlatformDataComponent } from './components/platform-data/platform-data.component';
 import { PluginApiComponent } from './components/plugin-api/plugin-api.component';
