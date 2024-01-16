@@ -5,5 +5,5 @@ export const environment = {
   version: PLUGIN_VERSION.version,
   bauth: 'Dmytrii:QwErTy2020',
   alias: `testapirequests`,
-  apiUrl: `http://localhost:82/api/v2/`
+  apiUrl: `http://localhost:82`
 }

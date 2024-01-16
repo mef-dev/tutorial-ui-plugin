@@ -22,7 +22,7 @@ export class HttpService implements IHttpService {
         responseType?: any;
         withCredentials?: boolean | undefined;
     } | undefined): Observable<Object> {
-        throw new Error('Method not implemented.');
+        return this.http.put(url, body, options);
     }
 
     get(path: string, options?: {
