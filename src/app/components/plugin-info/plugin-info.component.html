@@ -1,3 +1,16 @@
-<div class="topMargin">
-    <ngx-json-viewer [json]="data"></ngx-json-viewer>
+<div *ngIf="data | async as dataValue">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Ключ</th>
+            <th>Значення</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let key of getTableKeys(dataValue)">
+            <td>{{ key }}</td>
+            <td>{{ dataValue[key] !== null ? dataValue[key] : 'Нема значення' }}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

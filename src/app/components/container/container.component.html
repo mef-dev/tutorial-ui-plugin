@@ -1,12 +1,14 @@
-<div style="margin-top: 75px">
-    <button class="button" routerLink="platform-data" routerLinkActive="active-link">
-        {{ 'platform-data' | translate }}
-    </button>
-    <button class="button" routerLink="plugin-info" routerLinkActive="active-link">
-        {{ 'plugin-info' | translate }}
-    </button>
-    <button class="button" routerLink="plugin-api" routerLinkActive="active-link">
-        {{ 'plugin-api' | translate }}
-    </button>
-    <router-outlet></router-outlet>
-</div>
+<header class="h_eader">
+    <nav>
+        <button class="button" routerLink="platform-data" routerLinkActive="active-link">
+            {{ 'platform-data' | translate }}
+        </button>
+        <button class="button" routerLink="plugin-info" routerLinkActive="active-link">
+            {{ 'plugin-info' | translate }}
+        </button>
+        <button class="button" routerLink="plugin-api" routerLinkActive="active-link">
+            {{ 'plugin-api' | translate }}
+        </button>
+    </nav>
+</header>
+<router-outlet></router-outlet>

@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
-import { ContainerComponent} from './components/container/container.component';
+import { ContainerComponent } from './components/container/container.component';
 import { TranslationLoaderResolver } from './resolvers/translation-loader.resolver';
 import { PlatformDataComponent } from './components/platform-data/platform-data.component';
 import { PluginApiComponent } from './components/plugin-api/plugin-api.component';
 import { PluginInfoComponent } from './components/plugin-info/plugin-info.component';
+import { PlatformConnectionResolver } from './resolvers/platform-connection.resolver';
 
 const routes: Routes = PlatformHelper.updatePluginsRoutes([
   {
     path: "",
     component: ContainerComponent,
-    resolve: { model: TranslationLoaderResolver },
+    resolve: {
+      translation: TranslationLoaderResolver,
+      platformData: PlatformConnectionResolver
+    },
     children: [
       {
         path: "",
@@ -19,17 +23,17 @@ const routes: Routes = PlatformHelper.updatePluginsRoutes([
         pathMatch: "full"
       },
       {
-        path: "platform-data",
-        component: PlatformDataComponent
+        path: 'platform-data',
+        component: PlatformDataComponent,
       },
       {
-        path: "plugin-api",
-        component: PluginApiComponent
+        path: 'plugin-info',
+        component: PluginInfoComponent,
       },
       {
-        path: "plugin-info",
-        component: PluginInfoComponent
-      }
+        path: 'plugin-api',
+        component: PluginApiComponent,
+      },
     ]
   }
 ]);

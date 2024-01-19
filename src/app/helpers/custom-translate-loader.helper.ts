@@ -1,18 +1,12 @@
 import { TranslateLoader } from '@ngx-translate/core';
-import { IHttpService, PlatformHelper } from '@natec/mef-dev-platform-connector';
+import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpService } from '../services/http.service';
+import { HttpClient } from '@angular/common/http';
 
 export class CustomLoader implements TranslateLoader {
 
-    httpClient: IHttpService = PlatformHelper.getPlatformHttpClient();
-
-    constructor(private httpService: HttpService) {
-        if(!this.httpClient){
-            this.httpClient = this.httpService;
-        }
-    }
+    constructor(private httpClient: HttpClient) {}
 
     getTranslation(langCountry: string): Observable<any> {
         if(!langCountry){

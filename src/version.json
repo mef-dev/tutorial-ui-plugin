@@ -1,13 +1,13 @@
 {
     "dirty": true,
-    "raw": "v16-7-g1de388a-dirty",
-    "hash": "g1de388a",
-    "distance": 7,
+    "raw": "v16-10-g2b1ee2b-dirty",
+    "hash": "g2b1ee2b",
+    "distance": 10,
     "tag": "v16",
     "semver": null,
-    "suffix": "7-g1de388a-dirty",
+    "suffix": "10-g2b1ee2b-dirty",
     "semverString": "",
     "name": "test-app",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "main": "main.js"
 }

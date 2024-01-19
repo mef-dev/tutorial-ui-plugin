@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
-import { PlatformConnectorService } from '../../services/platform-connector.service';
 
 @Component({
   selector: 'app-platform-data',
@@ -9,14 +8,25 @@ import { PlatformConnectorService } from '../../services/platform-connector.serv
 })
 export class PlatformDataComponent implements OnInit {
 
-  pluginData: any;
+  pluginData: any = {};
+  pluginLocalData: any = {};
   assetUrl: string;
 
-  constructor(private platformConnectorService: PlatformConnectorService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.pluginData = this.platformConnectorService.PluginData;
+    PlatformHelper.getPluginData().subscribe(value => {
+      console.log('Platform local data: ', PlatformHelper.getPluginLocalData());
+      this.pluginLocalData = PlatformHelper.getPluginLocalData();
+
+      this.pluginData = value;
+    });
     this.assetUrl = PlatformHelper.getAssetUrl();
+    console.log(this.pluginData);
+  }
+
+  getTableKeys(value: any): string[] {
+    return Object.keys(value);
   }
 
 }

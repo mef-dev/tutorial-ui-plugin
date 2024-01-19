@@ -48,3 +48,18 @@
   background-color: #298e46;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
+
+
+.h_eader {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  background-color: chocolate;
+
+  nav {
+    margin-left: 15px;
+    display: flex;
+    column-gap: 28px;
+  }
+}

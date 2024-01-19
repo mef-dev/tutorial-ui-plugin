@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor} from './interceptors/auth.interceptor';
 import { ContainerComponent } from './components/container/container.component';
 import { PlatformDataComponent } from './components/platform-data/platform-data.component';
 import { PluginApiComponent } from './components/plugin-api/plugin-api.component';
@@ -11,7 +10,8 @@ import { PluginInfoComponent } from './components/plugin-info/plugin-info.compon
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CustomLoader } from './helpers/custom-translate-loader.helper';
-import { NgxJsonViewerModule  } from 'ngx-json-viewer';
+import { MefDevAuthInterceptor } from "@natec/mef-dev-platform-connector";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,20 +25,20 @@ import { NgxJsonViewerModule  } from 'ngx-json-viewer';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useClass: CustomLoader,
         deps: [HttpClient],
       }
-    }),
-    NgxJsonViewerModule
+    })
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
+      useClass: MefDevAuthInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent]

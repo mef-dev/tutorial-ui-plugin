@@ -1,11 +1,46 @@
-<div class="topMargin">
-    <p>
-        PluginData
-        <ngx-json-viewer [json]="pluginData"></ngx-json-viewer>
-    </p>
-    <hr />
-    <p>
-        assetUrl
-        <ngx-json-viewer [json]="assetUrl"></ngx-json-viewer>
-    </p>
-</div>
+<main class="main">
+
+    <div *ngIf="pluginLocalData">
+        <h3> PluginLocalData </h3>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Ключ</th>
+                <th>Значення</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let key of getTableKeys(pluginLocalData)">
+                <td>{{ key }}</td>
+                <td>{{ pluginLocalData[key] !== null ? pluginLocalData[key] : 'Нема значення' }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="assetUrl">
+        <h3> AssetUrl </h3>
+        <p> {{ assetUrl }} </p>
+    </div>
+
+    <div *ngIf="pluginData">
+        <h3> PluginData </h3>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Ключ</th>
+                <th>Значення</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let key of getTableKeys(pluginData)">
+                <td>{{ key }}</td>
+                <td>{{ pluginData[key] !== null ? pluginData[key] : 'Нема значення' }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>

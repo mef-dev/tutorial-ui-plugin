@@ -13,13 +13,20 @@ export class PluginApiComponent implements OnInit {
   constructor(private platformApiService: PlatformApiService) { }
 
   ngOnInit(): void {
-    const sendData = {
-      name: "walk dog"
+
+    const objectToSend = {
+      name: 'walkdog'
     }
 
-    this.platformApiService.createItem(sendData).subscribe((data: any): void => {
-      this.data = data;
-    });
+    this.platformApiService.createItem(objectToSend).subscribe(value => {
+      this.data = value;
+    })
 
   }
+
+  getTableKeys(): string[] {
+    return Object.keys(this.data);
+  }
+
+
 }

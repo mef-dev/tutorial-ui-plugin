@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformApiService } from '../../services/platform-api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-plugin-info',
@@ -8,14 +9,16 @@ import { PlatformApiService } from '../../services/platform-api.service';
 })
 export class PluginInfoComponent implements OnInit {
 
-  data: any;
+  data: Observable<any>;
 
   constructor(private platformApiService: PlatformApiService) { }
 
   ngOnInit(): void {
-    this.platformApiService.getInfo().subscribe((data: any) => {
-          this.data = data;
-    });
+    this.data = this.platformApiService.get();
+  }
+
+  getTableKeys(dataValue: any): string[] {
+    return Object.keys(dataValue);
   }
 
 }
