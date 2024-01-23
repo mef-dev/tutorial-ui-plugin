@@ -25,8 +25,16 @@ export class PlatformDataComponent implements OnInit {
     console.log(this.pluginData);
   }
 
-  getTableKeys(value: any): string[] {
-    return Object.keys(value);
+  getKeys(obj: any): string[] {
+    return obj ? Object.keys(obj) : [];
+  }
+
+  isObject(value: any): boolean {
+    return typeof value === 'object' && value !== null;
+  }
+
+  isArray(value: any): boolean {
+    return Array.isArray(value);
   }
 
 }

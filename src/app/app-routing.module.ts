@@ -7,6 +7,7 @@ import { PlatformDataComponent } from './components/platform-data/platform-data.
 import { PluginApiComponent } from './components/plugin-api/plugin-api.component';
 import { PluginInfoComponent } from './components/plugin-info/plugin-info.component';
 import { PlatformConnectionResolver } from './resolvers/platform-connection.resolver';
+import { SseComponent } from './components/sse/sse.component';
 
 const routes: Routes = PlatformHelper.updatePluginsRoutes([
   {
@@ -34,6 +35,10 @@ const routes: Routes = PlatformHelper.updatePluginsRoutes([
         path: 'plugin-api',
         component: PluginApiComponent,
       },
+      {
+        path: 'sse',
+        component: SseComponent
+      }
     ]
   }
 ]);

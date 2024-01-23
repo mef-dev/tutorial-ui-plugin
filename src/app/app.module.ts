@@ -12,6 +12,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { CustomLoader } from './helpers/custom-translate-loader.helper';
 import { MefDevAuthInterceptor } from "@natec/mef-dev-platform-connector";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SseComponent } from './components/sse/sse.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContainerComponent,
     PlatformDataComponent,
     PluginApiComponent,
-    PluginInfoComponent
+    PluginInfoComponent,
+    SseComponent
   ],
   imports: [
     HttpClientModule,

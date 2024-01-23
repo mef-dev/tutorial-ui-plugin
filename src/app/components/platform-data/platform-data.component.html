@@ -1,46 +1,51 @@
-<main class="main">
+<main class="main-container">
+    <section *ngIf="pluginLocalData" class="section-card">
+        <h3>PluginLocalData</h3>
+        <div *ngFor="let key of getKeys(pluginLocalData)" class="data-field">
+            <span class="data-key">{{ key }}:</span>
+            <ng-container *ngIf="isArray(pluginLocalData[key])">
+                <ul>
+                    <li *ngFor="let item of pluginLocalData[key]">
+                        <ng-container *ngIf="isObject(item)">
+                            <div *ngFor="let subKey of getKeys(item)">
+                                <span class="nested-key">{{ subKey }}:</span>
+                                <span class="nested-value">{{ item[subKey] }}</span>
+                            </div>
+                        </ng-container>
+                        <span *ngIf="!isObject(item)">{{ item }}</span>
+                    </li>
+                </ul>
+            </ng-container>
+            <span *ngIf="!isArray(pluginLocalData[key])" class="data-value">{{ pluginLocalData[key] }}</span>
+        </div>
+    </section>
 
-    <div *ngIf="pluginLocalData">
-        <h3> PluginLocalData </h3>
+    <section *ngIf="assetUrl" class="section-card">
+        <h3>AssetUrl</h3>
+        <div class="data-field">
+            <span class="data-key">URL:</span>
+            <span class="data-value">{{ assetUrl }}</span>
+        </div>
+    </section>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Ключ</th>
-                <th>Значення</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let key of getTableKeys(pluginLocalData)">
-                <td>{{ key }}</td>
-                <td>{{ pluginLocalData[key] !== null ? pluginLocalData[key] : 'Нема значення' }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div *ngIf="assetUrl">
-        <h3> AssetUrl </h3>
-        <p> {{ assetUrl }} </p>
-    </div>
-
-    <div *ngIf="pluginData">
-        <h3> PluginData </h3>
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Ключ</th>
-                <th>Значення</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let key of getTableKeys(pluginData)">
-                <td>{{ key }}</td>
-                <td>{{ pluginData[key] !== null ? pluginData[key] : 'Нема значення' }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
+    <section *ngIf="pluginData" class="section-card">
+        <h3>PluginData</h3>
+        <div *ngFor="let key of getKeys(pluginData)" class="data-field">
+            <span class="data-key">{{ key }}:</span>
+            <ng-container *ngIf="isArray(pluginData[key])">
+                <ul>
+                    <li *ngFor="let item of pluginData[key]">
+                        <ng-container *ngIf="isObject(item)">
+                            <div *ngFor="let subKey of getKeys(item)">
+                                <span class="nested-key">{{ subKey }}:</span>
+                                <span class="nested-value">{{ item[subKey] }}</span>
+                            </div>
+                        </ng-container>
+                        <span *ngIf="!isObject(item)">{{ item }}</span>
+                    </li>
+                </ul>
+            </ng-container>
+            <span *ngIf="!isArray(pluginData[key])" class="data-value">{{ pluginData[key] }}</span>
+        </div>
+    </section>
 </main>

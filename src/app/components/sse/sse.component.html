@@ -1,0 +1,32 @@
+<main class="sseMainBlock">
+
+    <nav>
+        <button (click)="openTab('subscribeSseTab')" class="button">
+            {{ 'Subscribe to sse' | translate }}
+        </button>
+        <button class="button" (click)="openTab('sendSseEventTab')">
+            {{ 'Send sse event' }}
+        </button>
+    </nav>
+
+    <div *ngIf="tab === 'subscribeSseTab'" class="tab">
+        <h3> Subscribe to stream </h3>
+        <button
+                (click)="subscribeToSse()"
+                class="button"
+                [disabled]="subscribeSseStatus === SseConnectionStatus.inProgress">
+            {{ 'Subscribe' | translate }}
+        </button>
+    </div>
+
+    <div *ngIf="tab === 'sendSseEventTab'" class="tab">
+        <h3> Send sse event </h3>
+        <button
+                (click)="sendSseEvent()"
+                class="button"
+                [disabled]="subscribeSseStatus === SseConnectionStatus.inProgress">
+            {{ 'Send' | translate }}
+        </button>
+    </div>
+
+</main>

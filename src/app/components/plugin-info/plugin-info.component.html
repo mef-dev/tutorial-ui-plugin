@@ -1,16 +1,25 @@
-<div *ngIf="data | async as dataValue">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Ключ</th>
-            <th>Значення</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let key of getTableKeys(dataValue)">
-            <td>{{ key }}</td>
-            <td>{{ dataValue[key] !== null ? dataValue[key] : 'Нема значення' }}</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="data-container">
+    <div *ngIf="data | async as dataValue" class="card">
+        <h2>Основні дані</h2>
+        <div class="content">
+            <div class="item" *ngFor="let key of getTableKeys(dataValue)">
+                <span class="key">{{ key }}</span>:
+                <span class="value">{{ dataValue[key] !== null ? dataValue[key] : 'Нема значення' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="pluginData | async as pluginDataValue" class="card">
+        <h2>Дані плагіну</h2>
+        <div class="content">
+            <ng-container *ngFor="let plugin of pluginDataValue">
+                <div class="plugin-item">
+                    <div *ngFor="let key of getTableKeys(plugin)">
+                        <span class="key">{{ key }}</span>:
+                        <span class="value">{{ plugin[key] !== null ? plugin[key] : 'Нема значення' }}</span>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
 </div>
