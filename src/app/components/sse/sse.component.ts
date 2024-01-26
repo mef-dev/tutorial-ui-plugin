@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { SseConnectionStatus } from '../../enums/sse-connection-status';
-import { Observable } from 'rxjs';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { PlatformApiService } from '../../services/platform-api.service';
 
@@ -12,24 +10,29 @@ import { PlatformApiService } from '../../services/platform-api.service';
 export class SseComponent {
 
   public tab: string;
-  public stream: Observable<any>;
-  public subscribeSseStatus: SseConnectionStatus = SseConnectionStatus.disabled;
+  public messageSseData: string;
+  public recordsOfSSe: any[] = [];
 
   constructor(private platformApiService: PlatformApiService) {}
 
   public subscribeToSse(): void {
     PlatformHelper.getSseStream().subscribe(value => {
-      this.subscribeSseStatus = SseConnectionStatus.estabilished;
-      this.stream = value;
-      console.log(this.stream)
+      console.log(value);
+      this.recordsOfSSe.push(value);
     }, (error) => {
-      this.subscribeSseStatus = SseConnectionStatus.disabled;
       console.error(error);
     });
   }
 
   public sendSseEvent() {
-    this.platformApiService.sendSseEvent(123, 'Hello').subscribe(value => {
+
+    const sendBody = {
+      message: this.messageSseData,
+      ServiceId: 160021,
+      OrganizationId: 1,
+    }
+
+    this.platformApiService.sendSseEvent(sendBody).subscribe(value => {
       console.log(value)
     })
   }
@@ -38,5 +41,4 @@ export class SseComponent {
     return this.tab = tab;
   }
 
-  protected readonly SseConnectionStatus = SseConnectionStatus;
 }

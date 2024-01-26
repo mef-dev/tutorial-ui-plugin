@@ -13,6 +13,13 @@ import { CustomLoader } from './helpers/custom-translate-loader.helper';
 import { MefDevAuthInterceptor } from "@natec/mef-dev-platform-connector";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SseComponent } from './components/sse/sse.component';
+import {
+  MefDevCollapseModule,
+  MefDevPageLayoutsModule,
+  MefDevTabsModule
+} from '@natec/mef-dev-ui-kit';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,14 +34,19 @@ import { SseComponent } from './components/sse/sse.component';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
+    MefDevTabsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useClass: CustomLoader,
         deps: [HttpClient],
       }
-    })
+    }),
+    MefDevPageLayoutsModule,
+    NgxJsonViewerModule,
+    MefDevCollapseModule
   ],
   providers: [
     {

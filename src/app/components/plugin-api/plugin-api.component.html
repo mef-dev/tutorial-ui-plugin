@@ -1,16 +1,8 @@
-<div *ngIf="data" class="data-container">
-    <table class="data-table">
-        <thead>
-        <tr>
-            <th>Ключ</th>
-            <th>Значення</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let key of getTableKeys()">
-            <td>{{ key }}</td>
-            <td>{{ data[key] !== null ? data[key] : 'Нема значення' }}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<main class="data-container">
+    <h3> This page provides an example of interacting with the API plugin </h3>
+    <div *ngIf="data" class="card">
+        <article>
+            <ngx-json-viewer [json]="data"></ngx-json-viewer>
+        </article>
+    </div>
+</main>

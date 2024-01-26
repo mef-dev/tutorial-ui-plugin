@@ -1,17 +1,37 @@
-<header class="h_eader">
-    <nav>
-        <button class="button" routerLink="platform-data" routerLinkActive="active-link">
-            {{ 'platform-data' | translate }}
-        </button>
-        <button class="button" routerLink="plugin-info" routerLinkActive="active-link">
-            {{ 'plugin-info' | translate }} (get)
-        </button>
-        <button class="button" routerLink="plugin-api" routerLinkActive="active-link">
-            {{ 'plugin-api' | translate }} (post)
-        </button>
-        <button class="button" routerLink="sse" routerLinkActive="active-link">
-            {{ 'Sse' | translate }}
-        </button>
-    </nav>
-</header>
-<router-outlet></router-outlet>
+<main class="mainContainer">
+    <mefdev-central-page>
+        <mefdev-central-page-row>
+            <mefdev-manage-page>
+                <ng-template #card_title>
+                    {{ 'test-app plugin' | translate}}
+                </ng-template>
+                <mefdev-tabset tabAnimation="slide-left" [ShowPagination]="false" (SelectChange)="getTabValue($event)">
+                    <mefdev-tab>
+                        <ng-template #TabHeading>
+                            {{ 'Plugin information' | translate }}
+                        </ng-template>
+                        <app-platform-data></app-platform-data>
+                    </mefdev-tab>
+                    <mefdev-tab>
+                        <ng-template #TabHeading>
+                            {{ 'Request to platform' | translate }}
+                        </ng-template>
+                        <app-plugin-info></app-plugin-info>
+                    </mefdev-tab>
+                    <mefdev-tab>
+                        <ng-template #TabHeading>
+                            {{ 'Request to plugin API' | translate }}
+                        </ng-template>
+                        <app-plugin-api></app-plugin-api>
+                    </mefdev-tab>
+                    <mefdev-tab>
+                        <ng-template #TabHeading>
+                            {{ 'sse' | translate }}
+                        </ng-template>
+                        <app-sse></app-sse>
+                    </mefdev-tab>
+                </mefdev-tabset>
+            </mefdev-manage-page>
+        </mefdev-central-page-row>
+    </mefdev-central-page>
+</main>

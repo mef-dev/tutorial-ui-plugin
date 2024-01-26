@@ -1,32 +1,26 @@
 <main class="sseMainBlock">
-
     <nav>
-        <button (click)="openTab('subscribeSseTab')" class="button">
-            {{ 'Subscribe to sse' | translate }}
-        </button>
-        <button class="button" (click)="openTab('sendSseEventTab')">
-            {{ 'Send sse event' }}
+        <button class="button" (click)="subscribeToSse()">
+            {{ 'Subscribe to SSE' | translate }}
         </button>
     </nav>
 
-    <div *ngIf="tab === 'subscribeSseTab'" class="tab">
-        <h3> Subscribe to stream </h3>
-        <button
-                (click)="subscribeToSse()"
-                class="button"
-                [disabled]="subscribeSseStatus === SseConnectionStatus.inProgress">
-            {{ 'Subscribe' | translate }}
-        </button>
+    <div class="form-container">
+        <h3>Send SSE Event</h3>
+        <div class="input-group">
+            <input type="text" id="sseInput" [(ngModel)]="messageSseData" placeholder="Enter event data...">
+            <button class="button" (click)="sendSseEvent()">
+                {{ 'Send SSE Event' | translate }}
+            </button>
+        </div>
     </div>
 
-    <div *ngIf="tab === 'sendSseEventTab'" class="tab">
-        <h3> Send sse event </h3>
-        <button
-                (click)="sendSseEvent()"
-                class="button"
-                [disabled]="subscribeSseStatus === SseConnectionStatus.inProgress">
-            {{ 'Send' | translate }}
-        </button>
+    <div class="sseRecords">
+        <h3> Event Records </h3>
+        <ul>
+            <li *ngFor="let item of recordsOfSSe">
+                <ngx-json-viewer [json]="item"></ngx-json-viewer>
+            </li>
+        </ul>
     </div>
-
 </main>

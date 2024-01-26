@@ -1,51 +1,25 @@
 <main class="main-container">
-    <section *ngIf="pluginLocalData" class="section-card">
-        <h3>PluginLocalData</h3>
-        <div *ngFor="let key of getKeys(pluginLocalData)" class="data-field">
-            <span class="data-key">{{ key }}:</span>
-            <ng-container *ngIf="isArray(pluginLocalData[key])">
-                <ul>
-                    <li *ngFor="let item of pluginLocalData[key]">
-                        <ng-container *ngIf="isObject(item)">
-                            <div *ngFor="let subKey of getKeys(item)">
-                                <span class="nested-key">{{ subKey }}:</span>
-                                <span class="nested-value">{{ item[subKey] }}</span>
-                            </div>
-                        </ng-container>
-                        <span *ngIf="!isObject(item)">{{ item }}</span>
-                    </li>
-                </ul>
-            </ng-container>
-            <span *ngIf="!isArray(pluginLocalData[key])" class="data-value">{{ pluginLocalData[key] }}</span>
-        </div>
+    <h3> This page offers crucial and fundamental details about our plugin </h3>
+    <h3> Mode: {{ mode }} </h3>
+
+    <section *ngIf="pluginData" class="section-card">
+        <h3>PluginData</h3>
+        <ngx-json-viewer [json]="pluginData"></ngx-json-viewer>
     </section>
 
     <section *ngIf="assetUrl" class="section-card">
         <h3>AssetUrl</h3>
-        <div class="data-field">
-            <span class="data-key">URL:</span>
-            <span class="data-value">{{ assetUrl }}</span>
-        </div>
+        <ngx-json-viewer [json]="assetUrl"></ngx-json-viewer>
     </section>
 
-    <section *ngIf="pluginData" class="section-card">
-        <h3>PluginData</h3>
-        <div *ngFor="let key of getKeys(pluginData)" class="data-field">
-            <span class="data-key">{{ key }}:</span>
-            <ng-container *ngIf="isArray(pluginData[key])">
-                <ul>
-                    <li *ngFor="let item of pluginData[key]">
-                        <ng-container *ngIf="isObject(item)">
-                            <div *ngFor="let subKey of getKeys(item)">
-                                <span class="nested-key">{{ subKey }}:</span>
-                                <span class="nested-value">{{ item[subKey] }}</span>
-                            </div>
-                        </ng-container>
-                        <span *ngIf="!isObject(item)">{{ item }}</span>
-                    </li>
-                </ul>
-            </ng-container>
-            <span *ngIf="!isArray(pluginData[key])" class="data-value">{{ pluginData[key] }}</span>
-        </div>
-    </section>
+    <mefdev-collapse-set [Accordion]="true" *ngIf="pluginLocalData">
+        <mefdev-collapse>
+            <ng-template #CardTitle>
+                Deprecated IPLuginData interface
+            </ng-template>
+            <section *ngIf="assetUrl" class="section-card">
+                <ngx-json-viewer [json]="pluginLocalData"></ngx-json-viewer>
+            </section>
+        </mefdev-collapse>
+    </mefdev-collapse-set>
 </main>

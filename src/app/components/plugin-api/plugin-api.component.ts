@@ -13,7 +13,6 @@ export class PluginApiComponent implements OnInit {
   constructor(private platformApiService: PlatformApiService) { }
 
   ngOnInit(): void {
-
     const objectToSend = {
       name: 'walkdog'
     }
@@ -21,7 +20,6 @@ export class PluginApiComponent implements OnInit {
     this.platformApiService.createItem(objectToSend).subscribe(value => {
       this.data = value;
     })
-
   }
 
   getTableKeys(): string[] {

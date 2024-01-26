@@ -1,7 +1,7 @@
 {
-  "test": "Тест",
-  "platform-data": "Дані платформи",
-  "platform-api": "API платформи",
-  "plugin-api": "API плагіна",
-  "plugin-info": "Інформація про плагін"
+  "test": "test",
+  "Plugin information": "Дані про платформу",
+  "Request to plugin API": "API запит на платформу",
+  "Request to platform": "Запит на платформу",
+  "sse": "Отримання SSE"
 }

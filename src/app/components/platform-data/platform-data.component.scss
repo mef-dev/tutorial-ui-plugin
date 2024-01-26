@@ -1,6 +1,10 @@
 .main-container {
   padding: 20px;
 
+  h3:nth-child(1) {
+    font-family: "Arial Black", sans-serif;
+  }
+
   .section-card {
     background: #f8f9fa;
     border-radius: 8px;
@@ -11,21 +15,6 @@
     h3 {
       color: #333;
       margin-bottom: 10px;
-    }
-
-    .data-field {
-      margin-bottom: 10px;
-      .data-key {
-        font-weight: bold;
-        color: #007bff;
-      }
-      .nested-data {
-        background-color: #e9ecef;
-        padding: 10px;
-        border-radius: 5px;
-        white-space: pre-wrap;
-        word-break: break-all;
-      }
     }
   }
 }

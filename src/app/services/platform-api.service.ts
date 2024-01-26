@@ -19,18 +19,15 @@ export class PlatformApiService {
   }
 
   getPluginData(): Observable<any> {
-    return this.httpClient.get(`${this.info.platformApiUrl}/bpmn/flowdefinitions`)
+    return this.httpClient.get(`${this.info.platformApiUrl}/services/info/160021`)
   }
 
   createItem(data: any): Observable<any>{
     return this.httpClient.post(`${this.info.pluginApiUrl}/${this.info.alias}/${PluginEndpoints.createItem}`, data);
   }
 
-  sendSseEvent(serviceId: number, message: any): Observable<any> {
-    return this.httpClient.post(`${this.info.pluginApiUrl}/${this.info.alias}/${PluginEndpoints.eventSend}`, {
-      serviceId: serviceId,
-      message: message
-    }, {
+  sendSseEvent(body: any): Observable<any> {
+    return this.httpClient.post(`${this.info.platformApiUrl}/${PluginEndpoints.messageSseEvent}`, body, {
       headers: {
         'Authorization': `Basic ${this.getAuthorization()}`
       }

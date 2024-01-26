@@ -1,17 +1,70 @@
 .sseMainBlock {
+  font-family: Arial, sans-serif;
   width: 100%;
   box-sizing: border-box;
+  padding: 20px;
 
   nav {
-    margin-top: 35px;
-    margin-left: 29px;
     display: flex;
-    column-gap: 35px;
+    justify-content: space-around;
+    margin-bottom: 20px;
   }
 
-  .tab {
-    margin-top: 15px;
-    margin-left: 29px;
+  .button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      background-color: #0056b3;
+    }
   }
 
+  .form-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+
+    .input-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
+      input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
+
+    h3 {
+      color: #333;
+    }
+  }
+
+  .sseRecords {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+
+    h3 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        padding: 5px 0;
+      }
+    }
+  }
 }
