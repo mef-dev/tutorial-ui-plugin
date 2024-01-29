@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-container',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor(private translate: TranslateService, private router: Router) { }
+  constructor(private translate: TranslateService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     console.log(this.translate.instant('test'));
@@ -18,20 +18,18 @@ export class ContainerComponent implements OnInit {
   getTabValue(value: any) {
     switch(value.index) {
       case 0:
-        this.router.navigate(['platform-data']);
+        this.router.navigate(['plugin-information']);
         break;
       case 1:
-        this.router.navigate(['plugin-info']);
+        this.router.navigate(['request-to-platform']);
         break;
       case 2:
-        this.router.navigate(['plugin-api']);
+        this.router.navigate(['request-to-plugin-api']);
         break;
       case 3:
-        this.router.navigate(['sse']);
+        this.router.navigate(['receive-sse']);
         break;
       default:
-        this.router.navigate(['platform-data']);
-        break;
     }
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformApiService } from '../../services/platform-api.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-plugin-api',
@@ -8,7 +9,8 @@ import { PlatformApiService } from '../../services/platform-api.service';
 })
 export class PluginApiComponent implements OnInit {
 
-  data: any;
+  getData: Observable<any>;
+  postData: any;
 
   constructor(private platformApiService: PlatformApiService) { }
 
@@ -17,14 +19,10 @@ export class PluginApiComponent implements OnInit {
       name: 'walkdog'
     }
 
+    this.getData = this.platformApiService.get();
     this.platformApiService.createItem(objectToSend).subscribe(value => {
-      this.data = value;
+      this.postData = value;
     })
   }
-
-  getTableKeys(): string[] {
-    return Object.keys(this.data);
-  }
-
 
 }

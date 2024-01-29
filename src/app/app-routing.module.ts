@@ -11,7 +11,7 @@ import { PlatformConnectionResolver } from './resolvers/platform-connection.reso
 
 const routes: Routes = PlatformHelper.updatePluginsRoutes([
   {
-    path: "",
+    path: '',
     component: ContainerComponent,
     resolve: {
       translation: TranslationLoaderResolver,
@@ -19,24 +19,24 @@ const routes: Routes = PlatformHelper.updatePluginsRoutes([
     },
     children: [
       {
-        path: "",
-        redirectTo: "platform-data",
-        pathMatch: "full"
+        path:'',
+        redirectTo: 'plugin-information',
+        pathMatch: 'full'
       },
       {
-        path: 'platform-data',
+        path: 'plugin-information',
         component: PlatformDataComponent,
       },
       {
-        path: 'plugin-info',
+        path: 'request-to-platform',
         component: PluginInfoComponent,
       },
       {
-        path: 'plugin-api',
+        path: 'request-to-plugin-api',
         component: PluginApiComponent,
       },
       {
-        path: 'sse',
+        path: 'receive-sse',
         component: SseComponent
       }
     ]

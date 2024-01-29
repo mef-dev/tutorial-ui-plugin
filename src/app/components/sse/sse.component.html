@@ -1,26 +1,28 @@
 <main class="sseMainBlock">
     <nav>
-        <button class="button" (click)="subscribeToSse()">
+        <button type="button" class="btn btn-success" (click)="subscribeToSse()">
             {{ 'Subscribe to SSE' | translate }}
         </button>
     </nav>
 
-    <div class="form-container">
-        <h3>Send SSE Event</h3>
-        <div class="input-group">
-            <input type="text" id="sseInput" [(ngModel)]="messageSseData" placeholder="Enter event data...">
-            <button class="button" (click)="sendSseEvent()">
-                {{ 'Send SSE Event' | translate }}
-            </button>
-        </div>
-    </div>
+    <mefdev-card-simple>
+        <h3> Send SSE Event </h3>
+        <article class="row h-100">
+            <div class="col-lg-11">
+                <input type="text" class="form-control" [(ngModel)]="messageSseData">
+            </div>
+            <div class="col-lg-1">
+                <button type="button" class="btn btn-success" (click)="sendSseEvent()"> Send </button>
+            </div>
+        </article>
+    </mefdev-card-simple>
 
-    <div class="sseRecords">
+    <mefdev-card-simple>
         <h3> Event Records </h3>
         <ul>
             <li *ngFor="let item of recordsOfSSe">
                 <ngx-json-viewer [json]="item"></ngx-json-viewer>
             </li>
         </ul>
-    </div>
+    </mefdev-card-simple>
 </main>

@@ -10,7 +10,7 @@ import { PlatformApiService } from '../../services/platform-api.service';
 export class SseComponent {
 
   public tab: string;
-  public messageSseData: string;
+  public messageSseData: string = 'Hello world';
   public recordsOfSSe: any[] = [];
 
   constructor(private platformApiService: PlatformApiService) {}

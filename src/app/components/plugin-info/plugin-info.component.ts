@@ -9,13 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class PluginInfoComponent implements OnInit {
 
-  data: Observable<any>;
   pluginData: Observable<any>
 
   constructor(private platformApiService: PlatformApiService) { }
 
   ngOnInit(): void {
-    this.data = this.platformApiService.get();
     this.pluginData = this.platformApiService.getPluginData();
   }
 

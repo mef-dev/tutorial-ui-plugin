@@ -19,7 +19,7 @@ export class PlatformApiService {
   }
 
   getPluginData(): Observable<any> {
-    return this.httpClient.get(`${this.info.platformApiUrl}/services/info/160021`)
+    return this.httpClient.get(`${this.info.platformApiUrl}/bpmn/flowdefinitions`);
   }
 
   createItem(data: any): Observable<any>{
