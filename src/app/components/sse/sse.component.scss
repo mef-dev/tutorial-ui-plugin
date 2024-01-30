@@ -1,16 +1,6 @@
-.sseMainBlock {
-  font-family: Arial, sans-serif;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 15px;
-
-  nav {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+.data-container {
+  .articleFormGroup {
+    width: 100%;
+    background-color: chocolate;
   }
-
 }

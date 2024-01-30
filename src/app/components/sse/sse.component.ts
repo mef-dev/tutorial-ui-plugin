@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { PlatformApiService } from '../../services/platform-api.service';
 
@@ -7,13 +7,20 @@ import { PlatformApiService } from '../../services/platform-api.service';
   templateUrl: './sse.component.html',
   styleUrls: ['./sse.component.scss']
 })
-export class SseComponent {
+export class SseComponent implements OnChanges {
 
-  public tab: string;
   public messageSseData: string = 'Hello world';
   public recordsOfSSe: any[] = [];
 
   constructor(private platformApiService: PlatformApiService) {}
+
+  @Input() currentTab: number;
+
+  ngOnChanges() {
+      if (this.currentTab === 3) {
+        this.subscribeToSse();
+    }
+  }
 
   public subscribeToSse(): void {
     PlatformHelper.getSseStream().subscribe(value => {
@@ -35,10 +42,6 @@ export class SseComponent {
     this.platformApiService.sendSseEvent(sendBody).subscribe(value => {
       console.log(value)
     })
-  }
-
-  public openTab(tab: string): string {
-    return this.tab = tab;
   }
 
 }

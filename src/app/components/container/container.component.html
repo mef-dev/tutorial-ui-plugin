@@ -28,7 +28,7 @@
                         <ng-template #TabHeading>
                             {{ 'sse' | translate }}
                         </ng-template>
-                        <app-sse></app-sse>
+                        <app-sse [currentTab]="currentTabIndex"></app-sse>
                     </mefdev-tab>
                 </mefdev-tabset>
             </mefdev-manage-page>
