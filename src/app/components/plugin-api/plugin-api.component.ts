@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformApiService } from '../../services/platform-api.service';
-import {Observable} from "rxjs";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-plugin-api',

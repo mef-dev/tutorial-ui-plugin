@@ -10,25 +10,25 @@
                         <ng-template #TabHeading>
                             {{ 'Plugin information' | translate }}
                         </ng-template>
-                        <app-platform-data></app-platform-data>
+                        <app-platform-data *ngIf="currentTabIndex === 0"></app-platform-data>
                     </mefdev-tab>
                     <mefdev-tab>
                         <ng-template #TabHeading>
                             {{ 'Request to platform' | translate }}
                         </ng-template>
-                        <app-plugin-info></app-plugin-info>
+                        <app-plugin-info *ngIf="currentTabIndex === 1"></app-plugin-info>
                     </mefdev-tab>
                     <mefdev-tab>
                         <ng-template #TabHeading>
                             {{ 'Request to plugin API' | translate }}
                         </ng-template>
-                        <app-plugin-api></app-plugin-api>
+                        <app-plugin-api *ngIf="currentTabIndex === 2"></app-plugin-api>
                     </mefdev-tab>
                     <mefdev-tab>
                         <ng-template #TabHeading>
                             {{ 'sse' | translate }}
                         </ng-template>
-                        <app-sse [currentTab]="currentTabIndex"></app-sse>
+                        <app-sse *ngIf="currentTabIndex === 3"></app-sse>
                     </mefdev-tab>
                 </mefdev-tabset>
             </mefdev-manage-page>

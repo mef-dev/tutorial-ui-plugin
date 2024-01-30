@@ -17,8 +17,4 @@ export class PluginInfoComponent implements OnInit {
     this.pluginData = this.platformApiService.getPluginData();
   }
 
-  getTableKeys(dataValue: any): string[] {
-    return Object.keys(dataValue);
-  }
-
 }
