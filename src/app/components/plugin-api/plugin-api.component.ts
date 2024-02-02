@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformApiService } from '../../services/platform-api.service';
 import { Observable } from 'rxjs';
+import { PluginEndpointsResponseModel } from '../../models/plugin-endpoints-response.model';
 
 @Component({
   selector: 'app-plugin-api',
@@ -9,8 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class PluginApiComponent implements OnInit {
 
-  getData: Observable<any>;
-  postData: any;
+  getData: Observable<PluginEndpointsResponseModel>;
+  postData: PluginEndpointsResponseModel;
 
   constructor(private platformApiService: PlatformApiService) { }
 

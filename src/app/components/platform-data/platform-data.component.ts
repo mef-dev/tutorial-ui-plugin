@@ -14,8 +14,6 @@ export class PlatformDataComponent implements OnInit {
   assetUrl: string;
   mode: string;
 
-  constructor() { }
-
   ngOnInit(): void {
     this.mode = environment.production ? 'production' : 'development'
     PlatformHelper.getPluginData().subscribe(value => {

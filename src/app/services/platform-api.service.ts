@@ -3,7 +3,9 @@ import { PluginEndpoints } from '../endpoints/plugin';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
-import { environment } from '../../environments/environment';
+import { PluginDataResponseModel } from '../models/plugin-data-response.model';
+import { PluginEndpointsResponseModel } from '../models/plugin-endpoints-response.model';
+import { SseBodyModel } from '../models/sse-body,model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,32 +16,20 @@ export class PlatformApiService {
 
   constructor(private httpClient: HttpClient) {}
 
-  get(): Observable<any> {
-    return this.httpClient.get(`${this.info.pluginApiUrl}/${this.info.alias}/${PluginEndpoints.getInfo}`);
+  get(): Observable<PluginEndpointsResponseModel> {
+    return this.httpClient.get<PluginEndpointsResponseModel>(`${this.info.pluginApiUrl}/${this.info.alias}/${PluginEndpoints.getInfo}`);
   }
 
-  getPluginData(): Observable<any> {
-    return this.httpClient.get(`${this.info.platformApiUrl}/bpmn/flowdefinitions`);
+  getPluginData(): Observable<PluginDataResponseModel> {
+    return this.httpClient.get<PluginDataResponseModel>(`${this.info.platformApiUrl}/bpmn/flowdefinitions`);
   }
 
-  createItem(data: any): Observable<any>{
-    return this.httpClient.post(`${this.info.pluginApiUrl}/${this.info.alias}/${PluginEndpoints.createItem}`, data);
+  createItem(data: any): Observable<PluginEndpointsResponseModel>{
+    return this.httpClient.post<PluginEndpointsResponseModel>(`${this.info.pluginApiUrl}/${this.info.alias}/${PluginEndpoints.createItem}`, data);
   }
 
-  sendSseEvent(body: any): Observable<any> {
-    return this.httpClient.post(`${this.info.platformApiUrl}/${PluginEndpoints.messageSseEvent}`, body, {
-      headers: {
-        'Authorization': `Basic ${this.getAuthorization()}`
-      }
-    })
+  sendSseEvent(body: SseBodyModel): Observable<any> {
+    return this.httpClient.post(`${this.info.platformApiUrl}/${PluginEndpoints.messageSseEvent}`, body);
   }
-
-  private getAuthorization(): string {
-    if (!environment.production && environment.bauth) {
-      return `Basic ${btoa(environment.bauth)}`;
-    }
-    return `Bearer ${localStorage.getItem('token')}`;
-  }
-
 
 }

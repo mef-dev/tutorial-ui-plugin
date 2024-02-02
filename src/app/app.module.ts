@@ -13,24 +13,19 @@ import { CustomLoader } from './helpers/custom-translate-loader.helper';
 import { MefDevAuthInterceptor } from "@natec/mef-dev-platform-connector";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SseComponent } from './components/sse/sse.component';
-import {
-    MefDevCardModule,
-    MefDevCollapseModule,
-    MefDevPageLayoutsModule,
-    MefDevTabsModule
-} from '@natec/mef-dev-ui-kit';
+import { MefDevCardModule, MefDevCollapseModule, MefDevPageLayoutsModule, MefDevTabsModule } from '@natec/mef-dev-ui-kit';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ContainerComponent,
-    PlatformDataComponent,
-    PluginApiComponent,
-    PluginInfoComponent,
-    SseComponent
-  ],
+    declarations: [
+        AppComponent,
+        ContainerComponent,
+        PlatformDataComponent,
+        PluginApiComponent,
+        PluginInfoComponent,
+        SseComponent
+    ],
     imports: [
         HttpClientModule,
         BrowserModule,
@@ -39,10 +34,10 @@ import { FormsModule } from '@angular/forms';
         BrowserAnimationsModule,
         MefDevTabsModule,
         TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useClass: CustomLoader,
-                deps: [HttpClient],
+           loader: {
+             provide: TranslateLoader,
+             useClass: CustomLoader,
+             deps: [HttpClient],
             }
         }),
         MefDevPageLayoutsModule,
@@ -50,19 +45,19 @@ import { FormsModule } from '@angular/forms';
         MefDevCollapseModule,
         MefDevCardModule
     ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MefDevAuthInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent]
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: MefDevAuthInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 
-  constructor(private translate:TranslateService) {
-    this.translate.setDefaultLang(localStorage.getItem('language') ?? 'en');
-  }
+    constructor(private translate: TranslateService) {
+        this.translate.setDefaultLang(localStorage.getItem('language') ?? 'en');
+    }
 
 }

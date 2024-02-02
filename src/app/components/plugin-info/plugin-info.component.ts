@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformApiService } from '../../services/platform-api.service';
 import { Observable } from 'rxjs';
+import { PluginDataResponseModel } from '../../models/plugin-data-response.model';
 
 @Component({
   selector: 'app-plugin-info',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class PluginInfoComponent implements OnInit {
 
-  pluginData: Observable<any>
+  pluginData: Observable<PluginDataResponseModel>
 
   constructor(private platformApiService: PlatformApiService) { }
 

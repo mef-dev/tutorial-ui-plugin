@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -12,8 +12,6 @@ export class ContainerComponent implements OnInit {
 
   private tabPaths = ['plugin-information', 'request-to-platform', 'request-to-plugin-api', 'receive-sse'];
   public currentTabIndex = 0;
-
-  @Output() tabChanged: EventEmitter<number> = new EventEmitter();
 
   constructor(
       private router: Router,
@@ -40,7 +38,6 @@ export class ContainerComponent implements OnInit {
     } else {
       this.currentTabIndex = 0;
     }
-    this.tabChanged.emit(this.currentTabIndex);
   }
 
   getTabValue(event: any) {
