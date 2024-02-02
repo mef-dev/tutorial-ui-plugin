@@ -38,7 +38,7 @@ import { FormsModule } from '@angular/forms';
              provide: TranslateLoader,
              useClass: CustomLoader,
              deps: [HttpClient],
-            }
+           }
         }),
         MefDevPageLayoutsModule,
         NgxJsonViewerModule,
