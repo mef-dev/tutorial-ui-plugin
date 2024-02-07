@@ -1,18 +1,17 @@
-import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
-import { TranslateService } from "@ngx-translate/core";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root'
+})
+
 export class TranslationLoaderResolver {
 
-    constructor(private translate: TranslateService){
-    }
+  constructor(private translateService: TranslateService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>{
-        return this.translate.get("test");
-    }
+  resolve(): Observable<any> {
+    return this.translateService.get('test');
+  }
 
 }

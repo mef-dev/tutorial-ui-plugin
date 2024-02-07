@@ -1,0 +1,17 @@
+{
+  "name": "test-app",
+  "serviceType": "APIUI",
+  "description": "test-app",
+  "dependencies": [],
+  "config":{
+    "routesUI":[
+      {
+        "lang":"en",
+        "routerLink":"modeler",
+        "label":"modeler_en"
+      }
+    ]
+  },
+  "externalUrl": null,
+  "configuration": null
+}

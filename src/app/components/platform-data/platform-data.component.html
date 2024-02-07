@@ -1,9 +1,25 @@
-<p>
-    PluginData
-    <ngx-json-viewer [json]="pluginData"></ngx-json-viewer>
-</p>
-<hr />
-<p>
-    assetUrl
-    <ngx-json-viewer [json]="assetUrl"></ngx-json-viewer> 
-</p>
+<main class="data-container">
+    <h3 class="text-center"> This page offers crucial and fundamental details about our plugin </h3>
+    <h3 class="text-center"> Mode: {{ mode }} </h3>
+
+    <section *ngIf="pluginData" class="card">
+        <h3>PluginData</h3>
+        <ngx-json-viewer [json]="pluginData"></ngx-json-viewer>
+    </section>
+
+    <section *ngIf="assetUrl" class="card">
+        <h3>AssetUrl</h3>
+        <ngx-json-viewer [json]="assetUrl"></ngx-json-viewer>
+    </section>
+
+    <section *ngIf="pluginLocalData" class="card">
+        <mefdev-collapse-set [Accordion]="true">
+            <mefdev-collapse>
+                <ng-template #CardTitle>
+                    Deprecated IPLuginData interface
+                </ng-template>
+                <ngx-json-viewer [json]="pluginLocalData"></ngx-json-viewer>
+            </mefdev-collapse>
+        </mefdev-collapse-set>
+    </section>
+</main>

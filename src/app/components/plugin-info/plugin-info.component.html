@@ -1,1 +1,9 @@
-<ngx-json-viewer [json]="data"></ngx-json-viewer>
+<div class="data-container">
+    <h3> This page showcases a good example of interacting with the API platform. </h3>
+
+    <div *ngIf="pluginData | async as pluginDataValue" class="card">
+        <div class="content">
+            <ngx-json-viewer [json]="pluginDataValue"></ngx-json-viewer>
+        </div>
+    </div>
+</div>

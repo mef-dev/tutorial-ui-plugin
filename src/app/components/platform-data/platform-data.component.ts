@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PlatformConnectorService } from 'src/app/services/platform-connector.service';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-platform-data',
@@ -9,15 +9,19 @@ import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 })
 export class PlatformDataComponent implements OnInit {
 
-  pluginData: any;
+  pluginData: any = {};
+  pluginLocalData: any = {};
   assetUrl: string;
-
-  constructor(
-    private platformConnectorService: PlatformConnectorService
-    ) { }
+  mode: string;
 
   ngOnInit(): void {
-    this.pluginData = this.platformConnectorService.PluginData;
+    this.mode = environment.production ? 'production' : 'development'
+    PlatformHelper.getPluginData().subscribe(value => {
+      console.log('Platform local data: ', PlatformHelper.getPluginLocalData());
+      this.pluginLocalData = PlatformHelper.getPluginLocalData();
+
+      this.pluginData = value;
+    });
     this.assetUrl = PlatformHelper.getAssetUrl();
   }
 

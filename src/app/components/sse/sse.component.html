@@ -1,0 +1,23 @@
+<main class="data-container">
+    <div class="card">
+        <h3>Send SSE Event</h3>
+        <article class="d-flex flex-row w-100 gap-3">
+            <div class="flex-grow-1">
+                <input type="text" class="form-control w-100" [(ngModel)]="messageSseData">
+            </div>
+            <div>
+                <button type="button" class="btn btn-success" (click)="sendSseEvent()">Send</button>
+            </div>
+        </article>
+    </div>
+
+
+    <div class="card">
+        <h3> Event Records </h3>
+        <ul>
+            <li *ngFor="let item of sseAnswersList">
+                <ngx-json-viewer [json]="item"></ngx-json-viewer>
+            </li>
+        </ul>
+    </div>
+</main>

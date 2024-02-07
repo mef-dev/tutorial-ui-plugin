@@ -1,1 +1,15 @@
-<ngx-json-viewer [json]="data"></ngx-json-viewer>
+<main class="data-container">
+    <h3> This page provides an example of interacting with the API plugin </h3>
+
+    <div *ngIf="getData | async as dataValue" class="card">
+        <h4> Get request </h4>
+        <ngx-json-viewer [json]="dataValue"></ngx-json-viewer>
+    </div>
+
+    <div *ngIf="postData" class="card">
+        <h4> Post request </h4>
+        <article>
+            <ngx-json-viewer [json]="postData"></ngx-json-viewer>
+        </article>
+    </div>
+</main>

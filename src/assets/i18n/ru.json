@@ -1,6 +1,7 @@
 {
-    "platform-data": "Данные платформы",
-    "platform-api": "API-интерфейс платформы",
-    "plugin-api": "API-интерфейс плагина",
-    "plugin-info": "Информация о плагине"
+  "test": "test",
+  "Plugin information": "Данные про платформу",
+  "Request to plugin API": "API запрос на платформу",
+  "Request to platform": "Запрос на платформу",
+  "sse": "Получение SSE"
 }

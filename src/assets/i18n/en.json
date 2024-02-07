@@ -1,7 +1,7 @@
 {
-    "test": "test",
-    "platform-data": "Platform data",
-    "platform-api": "Platform api",
-    "plugin-api": "Plugin api",
-    "plugin-info": "Plugin info"
+  "test": "test",
+  "Plugin information": "Plugin information",
+  "Request to plugin API": "Request to plugin API",
+  "Request to platform": "Request to platform",
+  "sse": "Receive SSE"
 }
