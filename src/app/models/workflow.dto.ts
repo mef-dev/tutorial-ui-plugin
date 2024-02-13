@@ -1,4 +1,4 @@
-export interface PluginDataResponseModel {
+export interface WorkflowDTO {
     workflowId: number;
     version: number;
     definition: string;

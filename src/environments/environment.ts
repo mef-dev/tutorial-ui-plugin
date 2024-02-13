@@ -3,6 +3,6 @@ import { PLUGIN_VERSION } from './version'
 export const environment = {
   production: false,
   version: PLUGIN_VERSION.version,
-  bauth: 'name:pass',
-  apiUrl: `http://localhost:82`
+  bauth: 'Bauth0802_3:Bauth0802_3',
+  apiUrl: `https://api.mef.dev`
 }

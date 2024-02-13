@@ -27,10 +27,10 @@ export class PlatformConnectionResolver {
                 }
                 return PlatformHelper.setOptions({
                     httpClient: this.httpClient as any,
-                    apiUrl: environment.apiUrl,
-                    pluginName: 'test-app',
+                    apiUrl: (environment as any).apiUrl,
+                    pluginName: 'basic-request-demo',
                     headers: {
-                        'Authorization': `Basic ${btoa(environment.bauth)}`
+                        'Authorization': `Basic ${btoa((environment as any).bauth)}`
                     }
                 })
             })

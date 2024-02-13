@@ -1,5 +1,6 @@
+const backendEntityName = 'restresource'; 
+
 export const PluginEndpoints = {
-    getInfo: `restresource/12`,
-    createItem: `restresource/create-item`,
-    messageSseEvent:  `message/sse/send`,
+    plgGet: `${backendEntityName}/12`,
+    plgPost: `${backendEntityName}/create-item`
 };

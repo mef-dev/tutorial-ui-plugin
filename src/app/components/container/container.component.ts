@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-container',
@@ -11,47 +10,29 @@ import { filter } from 'rxjs';
 export class ContainerComponent implements OnInit {
 
   private tabPaths = ['plugin-information', 'request-to-platform', 'request-to-plugin-api', 'receive-sse'];
-  public currentTabIndex = 0;
+  get currentTabIndex(): number {
+    return this.tabPaths.findIndex(x => this.router.url.includes(x))
+  }
 
   constructor(
-      private router: Router,
-      private activatedRoute: ActivatedRoute,
-      private translateService: TranslateService
-      ) {}
+    private router: Router,
+    private translateService: TranslateService,
+    private activatedRoute: ActivatedRoute
+    ) {
+  }
 
   ngOnInit() {
-    console.log(this.translateService.instant('test'));
-    this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.updateActiveTabFromURL();
-    });
+    console.log(this.translateService.instant('Translate instant!'));
   }
 
-  private updateActiveTabFromURL() {
-    const currentRelativePath = this.activatedRoute.snapshot.firstChild?.routeConfig?.path;
-    if (currentRelativePath) {
-      this.currentTabIndex = this.tabPaths.indexOf(currentRelativePath);
-      if (this.currentTabIndex === -1) {
-        this.currentTabIndex = 0;
-      }
-    } else {
-      this.currentTabIndex = 0;
+  tabsetSelectChange(event: any) {
+    const urlList = this.router.url.split('/');
+    let newUrl = '/';
+    for (let i = 1; i < urlList.length - 1; i++) {
+      newUrl += `${urlList[i]}/`;      
     }
+    newUrl += this.tabPaths[event.index]
+
+    this.router.navigateByUrl(newUrl);
   }
-
-  getTabValue(event: any) {
-    if (event.index !== this.currentTabIndex) {
-      this.currentTabIndex = event.index;
-      this.navigateToTab(event.index);
-    }
-  }
-
-  private navigateToTab(index: number) {
-    const newPath = this.tabPaths[index];
-    this.router.navigate([newPath], { relativeTo: this.activatedRoute });
-  }
-
-
-
 }

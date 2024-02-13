@@ -1,17 +1,32 @@
 {
-  "name": "test-app",
+  "name": "basic-request-demo",
   "serviceType": "APIUI",
-  "description": "test-app",
+  "description": "basic-request-demo",
   "dependencies": [],
   "config":{
     "routesUI":[
       {
-        "lang":"en",
-        "routerLink":"modeler",
-        "label":"modeler_en"
+          "lang":"en",
+          "routerLink":"plugin-information",
+          "label":"plugin-information"
+      },
+      {
+          "lang":"en",
+          "routerLink":"request-to-platform",
+          "label":"request-to-platform"
+      },
+      {
+          "lang":"en",
+          "routerLink":"request-to-plugin-api",
+          "label":"request-to-plugin-api"
+      },
+      {
+          "lang":"en",
+          "routerLink":"receive-sse",
+          "label":"receive-sse"
       }
     ]
   },
   "externalUrl": null,
-  "configuration": null
+  "configuration": "{ \"someProp\": \"some value\" }"
 }

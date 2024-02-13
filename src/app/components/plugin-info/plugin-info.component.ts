@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformApiService } from '../../services/platform-api.service';
 import { Observable } from 'rxjs';
-import { PluginDataResponseModel } from '../../models/plugin-data-response.model';
+import { WorkflowDTO } from '../../models/workflow.dto';
 
 @Component({
   selector: 'app-plugin-info',
@@ -10,12 +10,12 @@ import { PluginDataResponseModel } from '../../models/plugin-data-response.model
 })
 export class PluginInfoComponent implements OnInit {
 
-  pluginData: Observable<PluginDataResponseModel>
+  pluginData: Observable<WorkflowDTO>
 
   constructor(private platformApiService: PlatformApiService) { }
 
   ngOnInit(): void {
-    this.pluginData = this.platformApiService.getPluginData();
+    this.pluginData = this.platformApiService.pluginPostRequest();
   }
 
 }

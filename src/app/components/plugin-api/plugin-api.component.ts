@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformApiService } from '../../services/platform-api.service';
 import { Observable } from 'rxjs';
-import { PluginEndpointsResponseModel } from '../../models/plugin-endpoints-response.model';
 
 @Component({
   selector: 'app-plugin-api',
@@ -10,8 +9,8 @@ import { PluginEndpointsResponseModel } from '../../models/plugin-endpoints-resp
 })
 export class PluginApiComponent implements OnInit {
 
-  getData: Observable<PluginEndpointsResponseModel>;
-  postData: PluginEndpointsResponseModel;
+  getData: Observable<any>;
+  postData: any;
 
   constructor(private platformApiService: PlatformApiService) { }
 
@@ -20,8 +19,8 @@ export class PluginApiComponent implements OnInit {
       name: 'walkdog'
     }
 
-    this.getData = this.platformApiService.get();
-    this.platformApiService.createItem(objectToSend).subscribe(value => {
+    this.getData = this.platformApiService.pluginGetRequest();
+    this.platformApiService.platformGetWorkflows(objectToSend).subscribe(value => {
       this.postData = value;
     })
   }

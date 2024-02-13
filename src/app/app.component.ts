@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'test-app',
+  selector: 'basic-request-demo',
   template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {

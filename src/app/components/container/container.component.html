@@ -3,32 +3,36 @@
         <mefdev-central-page-row>
             <mefdev-manage-page>
                 <ng-template #card_title>
-                    {{ 'test-app plugin' | translate}}
+                    {{ 'Basic request demo plugin' | translate}}
                 </ng-template>
-                <mefdev-tabset tabAnimation="slide-left" [ShowPagination]="false" (SelectChange)="getTabValue($event)">
+                <mefdev-tabset 
+                    tabAnimation="slide-left" 
+                    [ShowPagination]="false" 
+                    (SelectChange)="tabsetSelectChange($event)" 
+                    [SelectedIndex]="currentTabIndex">
                     <mefdev-tab>
                         <ng-template #TabHeading>
                             {{ 'Plugin information' | translate }}
                         </ng-template>
-                        <app-platform-data *ngIf="currentTabIndex === 0"></app-platform-data>
+                        <app-platform-data *ngIf="currentTabIndex == 0"></app-platform-data>
                     </mefdev-tab>
                     <mefdev-tab>
                         <ng-template #TabHeading>
                             {{ 'Request to platform' | translate }}
                         </ng-template>
-                        <app-plugin-info *ngIf="currentTabIndex === 1"></app-plugin-info>
+                        <app-plugin-info *ngIf="currentTabIndex == 1"></app-plugin-info>
                     </mefdev-tab>
                     <mefdev-tab>
                         <ng-template #TabHeading>
                             {{ 'Request to plugin API' | translate }}
                         </ng-template>
-                        <app-plugin-api *ngIf="currentTabIndex === 2"></app-plugin-api>
+                        <app-plugin-api *ngIf="currentTabIndex == 2"></app-plugin-api>
                     </mefdev-tab>
                     <mefdev-tab>
                         <ng-template #TabHeading>
                             {{ 'sse' | translate }}
                         </ng-template>
-                        <app-sse *ngIf="currentTabIndex === 3"></app-sse>
+                        <app-sse *ngIf="currentTabIndex == 3"></app-sse>
                     </mefdev-tab>
                 </mefdev-tabset>
             </mefdev-manage-page>

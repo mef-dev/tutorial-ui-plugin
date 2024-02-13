@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
-import { PlatformApiService } from '../../services/platform-api.service';
-import { SseResponseModel } from '../../models/sse-response-model';
-import { SseBodyModel } from '../../models/sse-body,model';
 
 @Component({
   selector: 'app-sse',
@@ -13,30 +10,25 @@ import { SseBodyModel } from '../../models/sse-body,model';
 export class SseComponent implements OnInit {
 
   public messageSseData: string = 'Hello world';
-  public sseAnswersList: SseResponseModel[] = [];
+  public sseAnswersList: any[] = [];
 
-  constructor(private platformApiService: PlatformApiService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.subscribeToSse();
   }
 
   public subscribeToSse(): void {
-    PlatformHelper.getSseStream().subscribe(value => {
-      console.log(value);
-      this.sseAnswersList.push(value);
-    }, (error) => {
-      console.error(error);
-    });
-  }
-
-  public sendSseEvent() {
-
-    const sendBody: SseBodyModel = new SseBodyModel(this.messageSseData, PlatformHelper.PluginDataSync.pluginID);
-
-    this.platformApiService.sendSseEvent(sendBody).subscribe(value => {
-      console.log(value)
+    PlatformHelper.getSseStream().subscribe({
+      next:  (x) => this.sseAnswersList.unshift(x),
+      error: (e) => console.error(e)
     })
   }
 
+  public sendSseEvent() {
+    PlatformHelper.sendSseStream({ msg: this.messageSseData }).subscribe({
+      next:  (x) => console.log(x),
+      error: (e) => console.error(e)
+    })
+  }
 }
