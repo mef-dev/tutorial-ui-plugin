@@ -2,16 +2,10 @@
   "name": "basic-request-demo",
   "version": "1.1.1",
   "scripts": {
-    "build:lib": "cd projects/mef-dev-platform-connector && ng build",
-    "ng": "ng",
-    "start": "npm run generate-version-file && ng serve",
-    "build": "npm run generate-version-file && ng build",
-    "watch": "npm run generate-version-file && ng build --watch --configuration development",
-    "test": "ng test",
     "generate-version-file": "npm explore @natec/mef-dev-platform-connector -- npm run generate-version-file",
+    "start": "ng serve",
     "publish": "npm explore @natec/mef-dev-platform-connector -- npm run mef-dev-publish",
-    "build:plugin": "npm run generate-version-file && ng build --configuration production --output-hashing none --single-bundle",
-    "build:plugin:watch": "ng build --output-hashing none --single-bundle --watch --optimization=false --output-path C:/storage/front/Plugins/test/platform-connector-test/16.3.1"
+    "build:plugin": "npm run generate-version-file && ng build --configuration production --output-hashing none --single-bundle"
   },
   "dependencies": {
     "@angular/animations": "^16.2.8",

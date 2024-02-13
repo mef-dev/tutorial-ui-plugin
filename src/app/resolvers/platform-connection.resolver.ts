@@ -10,7 +10,6 @@ import { UiProfileViewModel } from '@natec/mef-dev-platform-connector/lib/models
 @Injectable({
     providedIn: 'root'
 })
-
 export class PlatformConnectionResolver {
 
     constructor(private httpClient: HttpClient) {}
@@ -27,7 +26,7 @@ export class PlatformConnectionResolver {
                 }
                 return PlatformHelper.setOptions({
                     httpClient: this.httpClient as any,
-                    apiUrl: (environment as any).apiUrl,
+                    apiUrl: `https://sandbox.mef.dev`,
                     pluginName: 'basic-request-demo',
                     headers: {
                         'Authorization': `Basic ${btoa((environment as any).bauth)}`
