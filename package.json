@@ -16,7 +16,7 @@
     "@angular/platform-browser": "^16.2.8",
     "@angular/platform-browser-dynamic": "^16.2.8",
     "@angular/router": "^16.2.8",
-    "@natec/mef-dev-platform-connector": "^16.3.14",
+    "@natec/mef-dev-platform-connector": "^16.3.15",
     "@natec/mef-dev-ui-kit": "^16.3.65",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
