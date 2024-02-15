@@ -2,6 +2,7 @@
   "name": "basic-request-demo",
   "serviceType": "APIUI",
   "description": "basic-request-demo",
+  "pluginMefName": "TestPlugin",
   "dependencies": [],
   "config":{
     "routesUI":[
