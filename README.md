@@ -116,4 +116,4 @@ TranslateModule.forRoot({
 
 In package.json, there are basic scripts provided for development and publishing purposes.
 
-For more information about these scripts, you can find detailed documentation [here](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#scripts) and [here](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#scripts).
+For more information about these scripts, you can find detailed documentation [here](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#scripts) and [here](https://mef.dev/dev_guides/first_ui_plugin.md#7-build-and-deploy).
