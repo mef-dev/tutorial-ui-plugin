@@ -15,7 +15,7 @@ export class PluginInfoComponent implements OnInit {
   constructor(private platformApiService: PlatformApiService) { }
 
   ngOnInit(): void {
-    this.pluginData = this.platformApiService.pluginPostRequest();
+    this.pluginData = this.platformApiService.getWorkflows();
   }
 
 }

@@ -26,7 +26,7 @@ export class PlatformConnectionResolver {
                 }
                 return PlatformHelper.setOptions({
                     httpClient: this.httpClient as any,
-                    apiUrl: `https://sandbox.mef.dev`,
+                    apiUrl: (environment as any)?.apiUrl ?? `https://sandbox.mef.dev`,
                     pluginName: 'basic-request-demo',
                     headers: {
                         'Authorization': `Basic ${btoa((environment as any).bauth)}`

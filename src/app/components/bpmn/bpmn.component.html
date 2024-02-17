@@ -1,0 +1,17 @@
+<main class="data-container">
+    <h4> This page provides an example of request to BPMN flow </h4>
+    <p 
+    *ngIf="status != 'inProgress' && status != 'ok'" 
+    style="text-align: center; color: red;"
+    class="body-4"
+    > 
+        No answer or error executing, check `simple-flow-example` in BPMN modeller!    
+    </p>
+
+    <div class="card">
+        <h4> BPMN answer </h4>
+        <article>
+            <ngx-json-viewer [json]="resp"></ngx-json-viewer>
+        </article>
+    </div>
+</main>

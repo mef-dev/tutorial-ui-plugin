@@ -20,7 +20,7 @@ export class PluginApiComponent implements OnInit {
     }
 
     this.getData = this.platformApiService.pluginGetRequest();
-    this.platformApiService.platformGetWorkflows(objectToSend).subscribe(value => {
+    this.platformApiService.pluginPostRequest(objectToSend).subscribe(value => {
       this.postData = value;
     })
   }

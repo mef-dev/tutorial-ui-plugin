@@ -30,9 +30,15 @@
                     </mefdev-tab>
                     <mefdev-tab>
                         <ng-template #TabHeading>
-                            {{ 'sse' | translate }}
+                            {{ 'SSE' | translate }}
                         </ng-template>
                         <app-sse *ngIf="currentTabIndex == 3"></app-sse>
+                    </mefdev-tab>
+                    <mefdev-tab>
+                        <ng-template #TabHeading>
+                            {{ 'BPMN' | translate }}
+                        </ng-template>
+                        <app-bpmn *ngIf="currentTabIndex == 4"></app-bpmn>
                     </mefdev-tab>
                 </mefdev-tabset>
             </mefdev-manage-page>

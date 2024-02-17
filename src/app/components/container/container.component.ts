@@ -9,7 +9,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class ContainerComponent implements OnInit {
 
-  private tabPaths = ['plugin-information', 'request-to-platform', 'request-to-plugin-api', 'receive-sse'];
+  private tabPaths = ['plugin-information', 'request-to-platform', 'request-to-plugin-api', 'receive-sse', 'bpmn'];
   get currentTabIndex(): number {
     return this.tabPaths.findIndex(x => this.router.url.includes(x))
   }

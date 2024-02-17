@@ -9,22 +9,27 @@
       {
           "lang":"en",
           "routerLink":"plugin-information",
-          "label":"plugin-information"
+          "label":"Main information"
       },
       {
           "lang":"en",
           "routerLink":"request-to-platform",
-          "label":"request-to-platform"
+          "label":"Request to platform"
       },
       {
           "lang":"en",
           "routerLink":"request-to-plugin-api",
-          "label":"request-to-plugin-api"
+          "label":"Request to plugin"
       },
       {
           "lang":"en",
           "routerLink":"receive-sse",
-          "label":"receive-sse"
+          "label":"SSE test"
+      },
+      {
+          "lang":"en",
+          "routerLink":"bpmn",
+          "label":"BPMN call"
       }
     ]
   },

@@ -1,6 +1,6 @@
 <main class="data-container">
-    <h3> This page provides an example of interacting with the API plugin </h3>
-
+    <p class="body-4"class="text-center"> This page provides an example of interacting with the API plugin </p> 
+    
     <div *ngIf="getData | async as dataValue" class="card">
         <h4> Get request </h4>
         <ngx-json-viewer [json]="dataValue"></ngx-json-viewer>

@@ -33,6 +33,10 @@ const routes: Routes = PlatformHelper.updatePluginsRoutes([
       {
         path: 'receive-sse',
         component: ContainerComponent,
+      },
+      {
+        path: 'bpmn',
+        component: ContainerComponent,
       }
     ]
   }

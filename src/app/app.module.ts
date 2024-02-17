@@ -16,6 +16,7 @@ import { SseComponent } from './components/sse/sse.component';
 import { MefDevCardModule, MefDevCollapseModule, MefDevPageLayoutsModule, MefDevTabsModule } from '@natec/mef-dev-ui-kit';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { FormsModule } from '@angular/forms';
+import { BpmnComponent } from './components/bpmn/bpmn.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
         PlatformDataComponent,
         PluginApiComponent,
         PluginInfoComponent,
-        SseComponent
+        SseComponent,
+        BpmnComponent
     ],
     imports: [
         HttpClientModule,
