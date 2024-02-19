@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
+export const tabPaths = ['plugin-information', 'request-to-platform', 'request-to-plugin-api', 'receive-sse', 'bpmn', 'assets-access'];
+
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
@@ -9,15 +11,13 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class ContainerComponent implements OnInit {
 
-  private tabPaths = ['plugin-information', 'request-to-platform', 'request-to-plugin-api', 'receive-sse', 'bpmn'];
   get currentTabIndex(): number {
-    return this.tabPaths.findIndex(x => this.router.url.includes(x))
+    return tabPaths.findIndex(x => this.router.url.includes(x))
   }
 
   constructor(
     private router: Router,
-    private translateService: TranslateService,
-    private activatedRoute: ActivatedRoute
+    private translateService: TranslateService
     ) {
   }
 
@@ -31,7 +31,7 @@ export class ContainerComponent implements OnInit {
     for (let i = 1; i < urlList.length - 1; i++) {
       newUrl += `${urlList[i]}/`;      
     }
-    newUrl += this.tabPaths[event.index]
+    newUrl += tabPaths[event.index]
 
     this.router.navigateByUrl(newUrl);
   }

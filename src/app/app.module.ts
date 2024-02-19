@@ -17,6 +17,7 @@ import { MefDevCardModule, MefDevCollapseModule, MefDevPageLayoutsModule, MefDev
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { FormsModule } from '@angular/forms';
 import { BpmnComponent } from './components/bpmn/bpmn.component';
+import { AssetsAccessComponent } from './components/assets-access/assets-access.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { BpmnComponent } from './components/bpmn/bpmn.component';
         PluginApiComponent,
         PluginInfoComponent,
         SseComponent,
-        BpmnComponent
+        BpmnComponent,
+        AssetsAccessComponent
     ],
     imports: [
         HttpClientModule,

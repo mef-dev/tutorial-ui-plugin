@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Route, RouterModule, Routes } from '@angular/router';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { TranslationLoaderResolver } from './resolvers/translation-loader.resolver';
-import { ContainerComponent } from './components/container/container.component';
+import { ContainerComponent, tabPaths } from './components/container/container.component';
 import { PlatformConnectionResolver } from './resolvers/platform-connection.resolver';
+
+function tabPathToRoute(path: string): Route{
+  return {
+    path: path,
+    component: ContainerComponent
+  }
+} 
 
 const routes: Routes = PlatformHelper.updatePluginsRoutes([
   {
@@ -18,26 +25,7 @@ const routes: Routes = PlatformHelper.updatePluginsRoutes([
         redirectTo: 'plugin-information',
         pathMatch: 'full'
       },
-      {
-        path: 'plugin-information',
-        component: ContainerComponent,
-      },
-      {
-        path: 'request-to-platform',
-        component: ContainerComponent,
-      },
-      {
-        path: 'request-to-plugin-api',
-        component: ContainerComponent,
-      },
-      {
-        path: 'receive-sse',
-        component: ContainerComponent,
-      },
-      {
-        path: 'bpmn',
-        component: ContainerComponent,
-      }
+      ...tabPaths.map(tabPathToRoute)
     ]
   }
 ]);

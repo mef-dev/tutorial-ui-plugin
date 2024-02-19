@@ -1,0 +1,24 @@
+<main class="data-container">
+    <h4> This page demonstrate access to plugin assets </h4>
+   
+    <!-- Variant 1 -->
+    <div class="card">
+        <img 
+        [src]="assetUrl + '/images/program_cycle_fin.jpg'"
+        />       
+    </div>
+
+    <!-- Variant 2 -->
+    <div class="card">
+        <img 
+        [src]="PlatformHelper.getAssetUrl() + '/images/program_cycle_fin.jpg'"
+        />
+    </div>
+
+    <!-- Variant 3 -->
+    <div class="card">
+        <img 
+        [src]="formatedAssetUrl"
+        />
+    </div>
+</main>
