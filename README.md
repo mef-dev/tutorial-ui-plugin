@@ -92,6 +92,9 @@ Here's an example of how to initialize this feature:
 },
 ```
 
+## Assets
+After publication, the relative location where Angular assets are stored changes. While debugging on a local machine, the path is \, but if the plugin is running under the platform, this path changes. For simple resolving of asset paths, it is recommended to use the [PlatformHelper.getAssetUrl() method](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#general-methods). This method contains URL resolving logic, allowing you to avoid manually changing URLs to assets.
+
 ## Translation implementation
 
 Built on [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core). The problem is that **plug-in assets in the case of working within the platform are in an unusual location**.
