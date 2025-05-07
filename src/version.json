@@ -1,13 +1,13 @@
 {
     "dirty": true,
-    "raw": "v16-30-g8d86599-dirty",
-    "hash": "g8d86599",
-    "distance": 30,
+    "raw": "v16-32-gb9338c9-dirty",
+    "hash": "gb9338c9",
+    "distance": 32,
     "tag": "v16",
     "semver": null,
-    "suffix": "30-g8d86599-dirty",
+    "suffix": "32-gb9338c9-dirty",
     "semverString": "",
     "name": "basic-request-demo",
-    "version": "1.1.7",
+    "version": "1.1.9",
     "main": "main.js"
 }

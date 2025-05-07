@@ -1,8 +1,7 @@
-
 # UI package with Backend logic (Portal plugin)
 > **Prerequisites:** Before you begin, make sure you have installed [nodejs](https://nodejs.org) and [@angular/cli](https://www.npmjs.com/package/@angular/cli)*
 
-> **Note:** This plugin has been tested on the following versions of @angular/cli: [12.2.17](https://www.npmjs.com/package/@angular/cli/v/12.2.17 "12.2.17"), [13.3.8](https://www.npmjs.com/package/@angular/cli/v/13.3.8 "13.3.8"), [14.3.0](https://www.npmjs.com/package/@angular/cli/v/14.2.11 "14.3.0"), [15.2.8](https://www.npmjs.com/package/@angular/cli/v/15.2.8 "15.2.8"), [16.2.8](https://www.npmjs.com/package/@angular/cli/v/16.2.8 "16.2.8")
+> **Note:** This plugin has been tested on the following versions of @angular/cli: [12.2.17](https://www.npmjs.com/package/@angular/cli/v/12.2.17), [13.3.8](https://www.npmjs.com/package/@angular/cli/v/13.3.8), [14.3.0](https://www.npmjs.com/package/@angular/cli/v/14.2.11), [15.2.8](https://www.npmjs.com/package/@angular/cli/v/15.2.8), [16.2.8](https://www.npmjs.com/package/@angular/cli/v/16.2.8)
 
 This repository serves as an extended example of a package within the [mef.dev](https://mef.dev/) platform.
 
@@ -12,7 +11,7 @@ The repository is intended to run as a `Portal` type of package together with th
 
 The process of building and uploading packages does not differ from previous guides, except for selecting the `Portal` type of package during registration. This type of package is oriented towards Frontend + Backend operation; therefore, the data for the frontend and backend components should be configured properly.
 
-> Refer to the [guide to register a package into the platform](https://mef.dev/dev_guides/upload_ui_plugin.md).
+> Refer to the [guide to register a package into the platform](https://platform.mef.dev/dev_guides/upload_ui_plugin.md).
 
 
 ## @natec/mef-dev-platform-connector
@@ -33,90 +32,91 @@ Important places to update:
 * \src\index.html (main component selector)
 * \src\app\resolvers\platform-connection.resolver.ts (seting options for PlatformHelper)
 
-For more information about the base selector, refer to [this guide](https://mef.dev/dev_guides/first_ui_plugin.md#3-changing-the-base-selector)
+For more information about the base selector, refer to [this guide](https://platform.mef.dev/dev_guides/first_ui_plugin.md#3-changing-the-base-selector)
 
 ## Routes feature
 
 To ensure proper routing functionality, it's essential that all actual paths are contained within the children section. Failure to do so may lead to unpredictable behavior, where navigating within the plugin modifies the entire path, including platform navigation. While this won't render the plugin inoperable, it can make further use of the platform unpredictable.
 
-Additionally, for correct navigation, the base paths should be passed through the updatePluginsRoutes(Routes) method. More details can be found [here](https://mef.dev/dev_guides/first_ui_plugin.md#4-routing-changes).
+> **Update:** `PlatformHelper.updatePluginsRoutes(...)` is no longer required. Routes are now registered directly.
 
-As a result, the declaration of paths should look as follows:
-```
+```ts
 // src/app/app-routing.module.ts
-import { PlatformHelper } from  '@natec/mef-dev-platform-connector';
-...
-// const  routes: Routes = [];
-const  routes: Routes = PlatformHelper.updatePluginsRoutes([
+const routes: Routes = [
   {
-    path:"",
-      children:[
-        // insert routes here
-      ]
+    path: "",
+    children: [
+      // insert routes here
+    ]
   }
-]);
-...
+];
 ```
 
-## PlatformConnectionResolver
+## Platform Initialization (via APP_INITIALIZER)
+Starting from version ^16.4.8, platform initialization and fallback configuration are handled in AppModule using APP_INITIALIZER and APP_BASE_HREF.
 
-All cooperation with the platform is possible only after initializing platform data in @natec/mef-dev-platform-connector.
+Instead of using a resolver, the logic now runs automatically during app startup:
 
-When loading this data, PlatformHelper must have initialization options. If the plugin is running in the platform (production mode), this process works automatically. However, if the plugin is being served on a local machine (development mode), you must manually set the basic information about the plugin.
-
-This process occurs specifically in the `src/app/resolvers/platform-connection.resolver.ts` file.
-
-## environment.ts 
-
-In order to send requests, authentication is typically required, often accomplished through token-based authentication in the platform. However, for testing purposes, Basic Auth can be used. You can create the necessary login-password pair for Basic Auth access to the API in the SETTINGS \ CREDENTIALS section of your profile. This section can be accessed by clicking on the user icon in the upper right corner and selecting the SETTINGS menu. Upon clicking the ADD button, you can set the user login and password for Basic Auth.
-
-environment.ts is an excellent place to declare important information for publishing and serving. In the PlatformConnectionResolver, during development mode, we add security headers provided by Basic credentials, which are stored in environment.ts.
-
+```ts
+{
+  provide: APP_INITIALIZER,
+  deps: [HttpClient, TranslateService],
+  useFactory: initPlatform,
+  multi: true,
+},
+{
+  provide: APP_BASE_HREF,
+  useFactory: PlatformHelper.getAppBasePath,
+}
 ```
+
+This ensures:
+* Fallback to sandbox configuration in development mode
+* Platform options are loaded before bootstrapping the app
+* Base href is properly resolved inside the platform
+
+## environment.ts
+Basic Auth fallback is still configured via environment:
+```ts
 headers: {
   'Authorization': `Basic ${btoa((environment as any).bauth)}`
 }
 ```
-## MefDevAuthInterceptor
 
+## MefDevAuthInterceptor
 If you need to add MEF.DEV Platform security headers to any HTTP request, you can achieve this by using the MefDevAuthInterceptor. This interceptor automatically adds headers from the PlatformHelper options.
 
 Here's an example of how to initialize this feature:
-
-```
-// src/app/app.module.ts
+```ts
 {
   provide: HTTP_INTERCEPTORS,
   useClass: MefDevAuthInterceptor,
   multi: true
 },
 ```
-
 ## Assets
-After publication, the relative location where Angular assets are stored changes. While debugging on a local machine, the path is \, but if the plugin is running under the platform, this path changes. For simple resolving of asset paths, it is recommended to use the [PlatformHelper.getAssetUrl() method](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#general-methods). This method contains URL resolving logic, allowing you to avoid manually changing URLs to assets.
+
+After publication, the relative location where Angular assets are stored changes. While debugging on a local machine, the path is , but if the plugin is running under the platform, this path changes. For simple resolving of asset paths, it is recommended to use the [PlatformHelper.getAssetUrl() method](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#general-methods). This method contains URL resolving logic, allowing you to avoid manually changing URLs to assets.
 
 ## Translation implementation
 
-Built on [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core). The problem is that **plug-in assets in the case of working within the platform are in an unusual location**.
+Built on [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core). The problem is that plug-in assets in the case of working within the platform are in an unusual location.
 
-To obtain assets, the platform provides their location by [@natec/mef-dev-platform-connector](https://www.npmjs.com/package/@natec/mef-dev-platform-connector).
+To obtain assets, the platform provides their location by @natec/mef-dev-platform-connector.
 
 A custom loader is used for this solution case:
-```
-// src/app.module.ts
-...
+```ts
 TranslateModule.forRoot({
   loader: {
-    provide:  TranslateLoader,
-    useClass:  CustomLoader,
+    provide: TranslateLoader,
+    useClass: CustomLoader,
     deps: [HttpClient],
   }
 }),
-...
 ```
 
-# Package scripts
+## Package scripts
 
 In package.json, there are basic scripts provided for development and publishing purposes.
 
-For more information about these scripts, you can find detailed documentation [here](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#scripts) and [here](https://mef.dev/dev_guides/first_ui_plugin.md#7-build-and-deploy).
+For more information about these scripts, you can find detailed documentation [here](https://www.npmjs.com/package/@natec/mef-dev-platform-connector#scripts) and [here](https://platform.mef.dev/dev_guides/first_ui_plugin.md#7-build-and-deploy).

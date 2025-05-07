@@ -1,11 +1,12 @@
 {
   "name": "basic-request-demo",
-  "version": "1.1.7",
+  "version": "1.1.9",
   "scripts": {
     "start": "ng serve",
     "generate-version-file": "npm explore @natec/mef-dev-platform-connector -- npm run generate-version-file",
     "publish": "npm explore @natec/mef-dev-platform-connector -- npm run mef-dev-publish",
-    "build:plugin": "npm run generate-version-file && ng build --configuration production --output-hashing none --single-bundle"
+    "build:plugin": "npm run generate-version-file && ng build --configuration production --output-hashing none --single-bundle",
+    "publish-kuber":  "npm run publish apiUrl=https://api.mef.dev bauth=Bauth1302:Bauth1302"
   },
   "dependencies": {
     "@angular/animations": "^16.2.8",
@@ -16,8 +17,8 @@
     "@angular/platform-browser": "^16.2.8",
     "@angular/platform-browser-dynamic": "^16.2.8",
     "@angular/router": "^16.2.8",
-    "@natec/mef-dev-platform-connector": "^16.3.15",
-    "@natec/mef-dev-ui-kit": "^16.3.65",
+    "@natec/mef-dev-platform-connector": "^16.4.8",
+    "@natec/mef-dev-ui-kit": "^16.3.67",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "bootstrap": "^5.3.2",

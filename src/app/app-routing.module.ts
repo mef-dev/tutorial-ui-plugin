@@ -12,7 +12,7 @@ function tabPathToRoute(path: string): Route{
   }
 } 
 
-const routes: Routes = PlatformHelper.updatePluginsRoutes([
+const routes: Routes = [
   {
     path: '',
     resolve: {
@@ -28,7 +28,7 @@ const routes: Routes = PlatformHelper.updatePluginsRoutes([
       ...tabPaths.map(tabPathToRoute)
     ]
   }
-]);
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
