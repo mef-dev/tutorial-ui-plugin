@@ -23,82 +23,82 @@ import { catchError, forkJoin, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 function init(httpClient: HttpClient, translate: TranslateService) {
-    return () => forkJoin([
-      PlatformHelper.loadPlatformOptions().pipe(
-        map((data: UiProfileViewModel) => {
-          console.warn('✅ Platform data loaded');
-          return data;
-        }),
-        catchError((err) => {
-          console.warn('⚠️ Platform data not detected');
-          if (environment.production) {
-            throw err;
-          }
-          return PlatformHelper.setOptions({
-            httpClient: httpClient as any,
-            apiUrl: (environment as any).apiUrl ?? 'https://sandbox.mef.dev',
-            pluginName: 'bpmn-designer',
-            headers: {
-              'Authorization': `Basic ${btoa((environment as any).bauth)}`
-            }
-          });
-        })
-      ), 
-      (
-        (translate: TranslateService) => {
-          translate.setDefaultLang(localStorage.getItem('language') ?? 'en');
-          return translate.get('test');
+  return () => forkJoin([
+    PlatformHelper.loadPlatformOptions().pipe(
+      map((data: UiProfileViewModel) => {
+        console.warn('✅ Platform data loaded');
+        return data;
+      }),
+      catchError((err) => {
+        console.warn('⚠️ Platform data not detected');
+        if (environment.production) {
+          throw err;
         }
-      )(translate)
-    ]);
-  }
+        return PlatformHelper.setOptions({
+          httpClient: httpClient as any,
+          apiUrl: (environment as any).apiUrl ?? 'https://api.mef.dev',
+          pluginName: 'basic-request-demo',
+          headers: {
+            'Authorization': `Basic ${btoa((environment as any).bauth)}`
+          }
+        });
+      })
+    ), 
+    (
+      (translate: TranslateService) => {
+        translate.setDefaultLang(localStorage.getItem('language') ?? 'en');
+        return translate.get('test');
+      }
+    )(translate)
+  ]);
+}
 @NgModule({
-    declarations: [
-        AppComponent,
-        ContainerComponent,
-        PlatformDataComponent,
-        PluginApiComponent,
-        PluginInfoComponent,
-        SseComponent,
-        BpmnComponent,
-        AssetsAccessComponent
-    ],
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        MefDevTabsModule,
-        TranslateModule.forRoot({
-           loader: {
-             provide: TranslateLoader,
-             useClass: CustomLoader,
-             deps: [HttpClient],
-           }
-        }),
-        MefDevPageLayoutsModule,
-        NgxJsonViewerModule,
-        MefDevCollapseModule,
-        MefDevCardModule
-    ],
-    providers: [
-        {
-            provide: APP_INITIALIZER,
-            deps: [ HttpClient, TranslateService ],
-            useFactory: init,
-            multi: true,
-        },
-        {
-            provide: APP_BASE_HREF,
-            useFactory: PlatformHelper.getAppBasePath,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: MefDevAuthInterceptor,
-            multi: true,
-        },
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    ContainerComponent,
+    PlatformDataComponent,
+    PluginApiComponent,
+    PluginInfoComponent,
+    SseComponent,
+    BpmnComponent,
+    AssetsAccessComponent
+  ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MefDevTabsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: CustomLoader,
+        deps: [HttpClient],
+      }
+    }),
+    MefDevPageLayoutsModule,
+    NgxJsonViewerModule,
+    MefDevCollapseModule,
+    MefDevCardModule
+  ],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      deps: [ HttpClient, TranslateService ],
+      useFactory: init,
+      multi: true,
+    },
+    {
+      provide: APP_BASE_HREF,
+      useFactory: PlatformHelper.getAppBasePath,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MefDevAuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

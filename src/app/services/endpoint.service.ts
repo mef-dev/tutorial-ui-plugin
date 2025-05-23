@@ -10,10 +10,10 @@ export class EndpointService {
   
   //Backend plugin
   get getInfo():string {
-    return `${PlatformHelper.PluginDataSync!.pluginApiUrl}/${PlatformHelper.PluginDataSync!.alias}/restresource/12`
+    return `${PlatformHelper.PluginDataSync!.pluginApiUrl!}/${PlatformHelper.PluginDataSync!.alias}/restresource/12`
   }
   get createItem():string {
-    return `${PlatformHelper.PluginDataSync!.pluginApiUrl}/${PlatformHelper.PluginDataSync!.alias}/restresource/create-item`
+    return `${PlatformHelper.PluginDataSync!.pluginApiUrl!}/${PlatformHelper.PluginDataSync!.alias}/restresource/create-item`
   }
 
     
